@@ -18,7 +18,7 @@ public class User {
     //昵称(用户名)
     private String nickName;
     //性别（0：男；1：女）
-    private int gener;
+    private int gender;
     //密码（不能少于六位）
     private String password;
     //头像
@@ -27,20 +27,26 @@ public class User {
     private int fans;
     //关注
     private int attention;
+    //生日
+    private String birthday;
+    //签名
+    private String description;
 
     public User() {
     }
 
     @Keep
-    public User(long user_id, String phone, String nickName, int gener, String password, String headIcon, int fans, int attention) {
+    public User(long user_id, String phone, String nickName, int gender, String password, String headIcon, int fans, int attention, String birthday, String description) {
         this.user_id = user_id;
         this.phone = phone;
         this.nickName = nickName;
-        this.gener = gener;
+        this.gender = gender;
         this.password = password;
         this.headIcon = headIcon;
         this.fans = fans;
         this.attention = attention;
+        this.birthday = birthday;
+        this.description = description;
     }
 
     public long getUser_id() {
@@ -67,12 +73,12 @@ public class User {
         this.nickName = nickName;
     }
 
-    public int getGener() {
-        return gener;
+    public int getGender() {
+        return gender;
     }
 
-    public void setGener(int gener) {
-        this.gener = gener;
+    public void setGender(int gender) {
+        this.gender = gender;
     }
 
     public String getPassword() {
@@ -105,5 +111,21 @@ public class User {
 
     public void setAttention(int attention) {
         this.attention = attention;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -20,6 +20,7 @@ import com.phone.funoutdoors.R;
 import com.phone.funoutdoors.activity.LoginActivity;
 import com.phone.funoutdoors.activity.MinePage_BannerActivity;
 import com.phone.funoutdoors.activity.MinePage_CertificateActivity;
+import com.phone.funoutdoors.activity.MinePage_EditPersonActivity;
 import com.phone.funoutdoors.activity.MinePage_MessageActivity;
 import com.phone.funoutdoors.activity.MinePage_SettingActivity;
 import com.phone.funoutdoors.bean.User;
@@ -90,7 +91,8 @@ public class MinePageFragment extends Fragment {
                 PopupWindowScreen.getInstance().showDialog(context, getActivity());
                 break;
             case R.id.edit_img:
-                Log.e("TAG", "编辑");
+                Intent intent1 = new Intent(context, MinePage_EditPersonActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.banner_dicovered:
                 Intent intent2 = new Intent(context, MinePage_BannerActivity.class);
@@ -139,14 +141,21 @@ public class MinePageFragment extends Fragment {
         TextView fansCount = (TextView) view.findViewById(R.id.fansCount);
         TextView attentionCount = (TextView) view.findViewById(R.id.attentionCount);
         ImageView headPic = (ImageView) view.findViewById(R.id.headPic);
+        TextView description = (TextView) view.findViewById(R.id.tv_description);
         //设置当前用户的基本信息
         long id = context.getSharedPreferences("config", Context.MODE_PRIVATE).getLong("userId", 0);
         List<User> user = UserDBManager.getInstance(context).findByUser(id);
-        fansCount.setText(String.valueOf(user.get(0).getFans()));
-        attentionCount.setText(String.valueOf(user.get(0).getAttention()));
-        tvUser.setText(user.get(0).getNickName());
-        if (!TextUtils.isEmpty(user.get(0).getHeadIcon())) {
-            Glide.with(context).load(user.get(0).getHeadIcon()).into(headPic);
+        User u = user.get(0);
+        fansCount.setText(String.valueOf(u.getFans()));
+        attentionCount.setText(String.valueOf(u.getAttention()));
+        tvUser.setText(u.getNickName());
+        if (TextUtils.isEmpty(u.getDescription())) {
+            description.setVisibility(View.GONE);
+        } else {
+            description.setText(u.getDescription());
+        }
+        if (!TextUtils.isEmpty(u.getHeadIcon())) {
+            Glide.with(context).load(u.getHeadIcon()).into(headPic);
         } else {
             headPic.setImageResource(R.mipmap.avtor_default);
         }

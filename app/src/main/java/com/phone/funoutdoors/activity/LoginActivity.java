@@ -186,7 +186,7 @@ public class LoginActivity extends AppCompatActivity {
                     sex = 1;
                 }
                 long id = UserDBManager.getInstance(LoginActivity.this).getId();
-                User user = new User(id, "", userName, sex, "", userIcon, 0, 0);
+                User user = new User(id, "", userName, sex, "", userIcon, 0, 0,null,null);
                 boolean b = UserDBManager.getInstance(LoginActivity.this).insertUser(user);
                 if (b) {
                     SharedPreferences config = getSharedPreferences("config", MODE_PRIVATE);

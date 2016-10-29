@@ -75,15 +75,13 @@
         <activity android:name=".activity.MinePage_CertificateActivity" />
         <!-- 实名认证Activity -->
         <activity android:name=".activity.MinePage_CertificateInfoActivity" />
-
         <activity android:name=".activity.MinePage_MessageActivity" />
-
         <activity android:name=".activity.MinePage_MessageInfoActivity" />
-
         <activity android:name=".activity.MinePage_SettingActivity" />
-        <activity android:name=".activity.MinePage_BannerActivity"></activity>
+        <activity android:name=".activity.MinePage_BannerActivity" />
         <activity android:name=".activity.HomePage_Scene_MoreActivity" />
-        <activity android:name=".activity.HomePage_QuboActivity"></activity>
+        <activity android:name=".activity.HomePage_QuboActivity" />
+        <activity android:name=".activity.MinePage_EditPersonActivity"></activity>
     </application>
 
 </manifest>

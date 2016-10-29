@@ -143,7 +143,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     break;
                             }
                             long id = manager.getId();
-                            User user = new User(id + 1, phone, nick, sex, pass, "", 0, 0);
+                            User user = new User(id + 1, phone, nick, sex, pass, "", 0, 0,null,null);
                             boolean b = manager.insertUser(user);
                             if (b) {
                                 popupWindow.showPopupWindowDialog(null, Constant.IMAGE_TEXTVIEW_BOUTTON, this);

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@drawable/button_bg_selector"
+    android:gravity="center"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
+
+    <TextView
+        android:id="@+id/left_tilte"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="头像"
+
+        android:textSize="15sp" />
+
+    <FrameLayout
+        android:id="@+id/fr_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/arrow">
+
+        <!--  <android.support.v4.widget.CircleImageView
+              android:id="@+id/img"
+              android:padding="2dp"
+              android:background="@drawable/circle_pic_bind"
+              android:layout_width="30dp"
+              android:layout_height="30dp"
+              android:layout_gravity="center"
+              android:src="@mipmap/avtor_default" />-->
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/arrow"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/arrow" />
+</RelativeLayout>
