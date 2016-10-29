@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--精选布局的二级布局-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/home_page_scrollView"
+    android:layout_width="match_parent"
+    android:paddingBottom="50dp"
+    android:scrollbars="none"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--图片轮播-->
+        <include layout="@layout/fragment_home_page_item_header_viewpage"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            ></include>
+
+        <!--景点详细信息-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/destination_summary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableBottom="@drawable/line"
+                android:drawablePadding="10dp"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:textSize="12sp" />
+
+            <RelativeLayout
+                android:id="@+id/profile_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableBottom="@drawable/line"
+                    android:drawablePadding="10dp"
+                    android:text="目的地详情" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@mipmap/mdd_shape"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/tip_scene"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="小贴士" />
+
+                <ImageView
+                    android:id="@+id/expand_tip"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@mipmap/tips_shape1" />
+
+                <TextView
+                    android:layout_below="@id/expand_tip"
+                    android:id="@+id/tip_info"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_below="@id/tip_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#d5d5d5"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="趣播" />
+
+                <TextView
+                    android:id="@+id/more_qubo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:drawablePadding="3dp"
+                    android:drawableRight="@mipmap/qw_more"
+                    android:text="更多"
+                    android:textColor="@android:color/holo_blue_light" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <!--趣播布局-->
+        <LinearLayout
+            android:id="@+id/scene_item_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"></LinearLayout>
+
+        <!--相关路线-->
+        <LinearLayout
+            android:id="@+id/scene_item_route"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"></LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

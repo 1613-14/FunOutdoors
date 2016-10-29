@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="com.phone.funoutdoors.activity.HomePage_SceneActivity">
+    <!--精选景色的二级页面布局-->
+    <include
+        layout="@layout/toolbar_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></include>
+
+    <RelativeLayout
+        android:layout_weight="1"
+        android:id="@+id/home_page_scene_no_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/mycollection_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/mycollection_nothing" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/mycollection_image"
+            android:layout_alignStart="@+id/mycollection_image"
+            android:layout_below="@+id/mycollection_image"
+            android:text="访问网络失败!" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/home_page_scene_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/fragment_home_page_item_scene_seconditem"></include>
+    </RelativeLayout>
+</LinearLayout>

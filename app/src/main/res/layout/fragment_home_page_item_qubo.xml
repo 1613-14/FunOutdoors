@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--趣播的布局-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--大图-->
+    <ImageView
+        android:id="@+id/qubo_image"
+        android:layout_width="match_parent"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="3dp"
+        android:layout_height="205dp" />
+    <!--类型名-->
+    <TextView
+        android:id="@+id/media_typeName"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+    <!--类型图-->
+    <ImageView
+        android:id="@+id/media_type"
+        android:layout_marginTop="15dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@id/media_typeName"
+        android:layout_centerHorizontal="true" />
+    <!--视频名-->
+    <TextView
+        android:id="@+id/media_name"
+        android:layout_width="match_parent"
+        android:singleLine="true"
+        android:ellipsize="none"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/media_type"
+        android:layout_marginLeft="20dp"
+        android:textSize="18sp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/white" />
+    <!--景点类型-->
+    <TextView
+        android:id="@+id/scene_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_below="@id/media_name"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/white" />
+    <!--查看的小眼睛-->
+    <ImageView
+        android:id="@+id/view_see"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/media_name"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@id/scene_type"
+        android:src="@mipmap/view_small_white" />
+    <!--查看量-->
+    <TextView
+        android:id="@+id/view_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/media_name"
+        android:layout_toRightOf="@id/view_see"
+        android:textColor="@color/white" />
+</RelativeLayout>

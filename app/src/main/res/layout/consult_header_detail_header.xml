@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/consult_header_details_image"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/consult_header_details_text"
+        android:textSize="16dp"
+        android:paddingTop="3dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="3dp"
+        android:text="asdfasf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#A2ACAE"
+        android:gravity="center_vertical"
+        android:text="相关新闻"
+        android:paddingLeft="10dp"
+        android:textColor="#ffff00"
+        android:textSize="16sp" />
+</LinearLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/consult_listView_header_image"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/consult_listView_header_more"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/consult_listView_header_image"
+        android:gravity="center"
+        android:text="查看更多专题>>" />
+
+    <TextView
+        android:id="@+id/consult_listView_header_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="44dp"
+        android:gravity="center"
+        android:text="HAHAHA "
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+</RelativeLayout>

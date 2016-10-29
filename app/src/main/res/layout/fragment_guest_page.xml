@@ -1,0 +1,16 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragment.GuestPageFragment">
+
+   <!--头部图片-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <!--推荐游记-->
+        
+    <!--达人专访-->
+    <!--推荐达人-->
+</LinearLayout>

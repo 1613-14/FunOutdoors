@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/bg_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/user_crnter_bg" />
+    <!--头像图片-->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/headPic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/bg_login"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:src="@mipmap/avtor_default" />
+
+    <TextView
+        android:id="@+id/tv_user"
+        style="@style/TextStyle"
+        android:layout_alignTop="@id/headPic"
+        android:layout_toRightOf="@id/headPic" />
+
+    <!--编辑-->
+    <ImageView
+        android:id="@+id/edit_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@mipmap/edit" />
+
+    <include
+        layout="@layout/logined_info"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_alignLeft="@+id/headPic"
+        android:layout_alignParentRight="true"
+        android:layout_alignStart="@+id/headPic"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp" />
+</RelativeLayout>

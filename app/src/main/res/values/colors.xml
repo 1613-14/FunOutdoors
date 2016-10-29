@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#faffffff</color>
+    <color name="white">#ffffff</color>
+    <color name="bg_mine">#9a31b1be</color>
+    <color name="bg_bnt">#39a2e3</color>
+    <color name="bg_register_start">#ecf9f8</color>
+    <color name="bg_register_center">#d5ecea</color>
+    <color name="bg_register_bottom">#b1d6ed</color>
+    <color name="edit_hint">#8e8f90</color>
+    <color name="edit_cursor">#307430</color>
+    <color name="orangle">#FF6600</color>
+    <color name="grey_white">#f5f4f4</color>
+    <color name="singleblue">#75c2f2</color>
+    <color name="polu">#faf76dce</color>
+    <color name="windowBg">#83181717</color>
+</resources>

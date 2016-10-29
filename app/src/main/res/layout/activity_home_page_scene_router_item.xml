@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--相关路线布局-->
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:contentPadding="5dp"
+    android:layout_height="match_parent">
+
+   <LinearLayout
+       android:orientation="vertical"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <TextView
+           android:layout_marginTop="5dp"
+           android:layout_marginBottom="5dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="相关路线"
+           android:textSize="14sp"
+           />
+       <ImageView
+           android:id="@+id/scene_item_route_image"
+           android:layout_width="match_parent"
+           android:layout_height="150dp"
+           android:scaleType="centerCrop"/>
+       <TextView
+           android:id="@+id/scene_item_route_title"
+           android:layout_width="wrap_content"
+           android:textColor="@android:color/black"
+           android:layout_marginTop="5dp"
+           android:layout_marginBottom="5dp"
+           android:layout_height="wrap_content"
+           />
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <TextView
+               android:id="@+id/scene_item_region"
+               android:layout_width="wrap_content"
+               android:layout_marginRight="10dp"
+               android:text="出发地点："
+               android:layout_height="wrap_content" />
+
+           <TextView
+               android:layout_toRightOf="@id/scene_item_region"
+               android:id="@+id/scene_item_route_state"
+               android:layout_width="wrap_content"
+               android:text="出发时间："
+               android:layout_height="wrap_content" />
+       </RelativeLayout>
+   </LinearLayout>
+</android.support.v7.widget.CardView>
