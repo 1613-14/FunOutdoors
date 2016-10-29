@@ -10,6 +10,11 @@
     </declare-styleable>
     <!--自定义的身份证添加图片的控件的属性-->
     <declare-styleable name="IDCartView">
-        <attr name="bgImage" format="reference"/>
+        <attr name="bgImage" format="reference" />
+    </declare-styleable>
+    <!--自定义的消息通知的选择item-->
+    <declare-styleable name="MessageItem">
+        <attr name="messageItemIcon" format="reference" />
+        <attr name="messageItemText" format="string" />
     </declare-styleable>
 </resources>

@@ -7,7 +7,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -40,7 +39,7 @@ public class PopupWindowDialog {
      * @param info
      * @param tag（判断条件）
      */
-    public void showPopupWindowDialog(String info, int tag, Context context) {
+    public void showPopupWindowDialog(String info, int tag, final Context context) {
         switch (tag) {
             case Constant.TEXTVIEW:
                 //检查信息不合法弹出框
@@ -69,7 +68,16 @@ public class PopupWindowDialog {
                 showDialog(loginSuccessView, context);
                 break;
             case Constant.TEXTVIEW_AND_BUTTON:
-
+                View okDialog = LayoutInflater.from(context).inflate(R.layout.dialog_ok, null,false);
+                TextView reminder = (TextView) okDialog.findViewById(R.id.reminder);
+                reminder.setText(info);
+                okDialog.findViewById(R.id.ok_bnt).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        hiddenDialog();
+                    }
+                });
+                showDialog(okDialog,context);
                 break;
 
 
@@ -80,7 +88,7 @@ public class PopupWindowDialog {
     /**
      * 弹出选择添加图片方式
      */
-    private void showSelectPic(Context context,AppCompatActivity activity) {
+    private void showSelectPic(Context context, AppCompatActivity activity) {
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_selector_picture, null);
         View inflate = LayoutInflater.from(context).inflate(R.layout.activity_register, null);
 
@@ -114,17 +122,5 @@ public class PopupWindowDialog {
         if (popupWindow != null) {
             popupWindow.dismiss();
         }
-    }
-
-    /**
-     * 设置添加屏幕的背景透明度
-     *
-     * @param bgAlpha
-     */
-    public void backgroundAlpha(float bgAlpha, AppCompatActivity activity) {
-        WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
-        lp.alpha = bgAlpha;
-        activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        activity.getWindow().setAttributes(lp);
     }
 }

@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -60,8 +59,10 @@ public class RegisterActivity extends AppCompatActivity {
                 if (popupWindow != null) {
                     //两秒后弹出窗体自动消失
                     popupWindow.hiddenDialog();
-                    finish();
                 }
+            }else {
+                popupWindow.hiddenDialog();
+                finish();
             }
         }
     };
@@ -104,22 +105,26 @@ public class RegisterActivity extends AppCompatActivity {
         String phone = tvphone.getText().toString();
         if (TextUtils.isEmpty(phone)) {
             popupWindow.showPopupWindowDialog("请输入手机号码", Constant.TEXTVIEW, this);
+            handler.sendEmptyMessageDelayed(100, 2000);
         } else {
             String code = smscheck.getText().toString();
             if (TextUtils.isEmpty(code)) {
                 popupWindow.showPopupWindowDialog("验证码不能为空", Constant.TEXTVIEW, this);
+                handler.sendEmptyMessageDelayed(100, 2000);
             } else {
                 String nick = nickname.getText().toString();
-                Log.e("TAG", nick);
                 if (TextUtils.isEmpty(nick)) {
                     popupWindow.showPopupWindowDialog("昵称不能为空", Constant.TEXTVIEW, this);
+                    handler.sendEmptyMessageDelayed(100, 2000);
                 } else {
                     String pass = password.getText().toString();
                     if (TextUtils.isEmpty(pass)) {
                         popupWindow.showPopupWindowDialog("密码不能为空", Constant.TEXTVIEW, this);
+                        handler.sendEmptyMessageDelayed(100, 2000);
                     } else {
                         if (pass.length() < 6) {
                             popupWindow.showPopupWindowDialog("密码不能小于6位", Constant.TEXTVIEW, this);
+                            handler.sendEmptyMessageDelayed(100, 2000);
                         } else {
                             String invite = inviteCode.getText().toString();
                             if (invite == null) {
@@ -142,6 +147,7 @@ public class RegisterActivity extends AppCompatActivity {
                             boolean b = manager.insertUser(user);
                             if (b) {
                                 popupWindow.showPopupWindowDialog(null, Constant.IMAGE_TEXTVIEW_BOUTTON, this);
+                                handler.sendEmptyMessageDelayed(101, 2000);
                             } else {
                                 popupWindow.showPopupWindowDialog("注册失败", Constant.TEXTVIEW, this);
                             }
@@ -151,8 +157,6 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         }
-        //两秒后弹出窗体自动消失
-        handler.sendEmptyMessageDelayed(100, 2000);
     }
 
 

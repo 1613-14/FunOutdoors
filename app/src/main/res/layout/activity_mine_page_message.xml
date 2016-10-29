@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_white"
+    android:orientation="vertical"
+    tools:context="com.phone.funoutdoors.activity.MinePage_MessageActivity">
+    <!--toolbar-->
+    <include layout="@layout/toolbar_item" />
+    <!-- 系统消息-->
+    <com.phone.funoutdoors.view.MessageItem
+        android:id="@+id/system_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:messageItemIcon="@mipmap/system_message"
+        app:messageItemText="系统消息" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="#d5d5d5" />
+    <!--通知中心-->
+    <com.phone.funoutdoors.view.MessageItem
+        android:id="@+id/notification_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:messageItemIcon="@mipmap/notice_message"
+        app:messageItemText="通知中心" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="#d5d5d5" />
+    <!--私信-->
+    <com.phone.funoutdoors.view.MessageItem
+        android:id="@+id/private_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:messageItemIcon="@mipmap/sys_letter"
+        app:messageItemText="私信" />
+</LinearLayout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_white"
+    android:orientation="vertical"
+    tools:context="com.phone.funoutdoors.activity.MinePage_CertificateInfoActivity">
+    <!--toolBar-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/toolbar_item" />
+
+        <Button
+            android:id="@+id/commit_bnt"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/commit_bnt_shape_checked"
+            android:text="提交"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+    <!--姓名和身份证号码-->
+    <EditText
+        android:id="@+id/name"
+        style="@style/MineCertifateStyle"
+        android:background="@drawable/edit_shape"
+        android:hint="姓名" />
+
+    <EditText
+        android:id="@+id/card_id"
+        style="@style/MineCertifateStyle"
+        android:background="@drawable/edit_shape"
+        android:hint="身份证号码" />
+    <!--身份证正面-->
+    <TextView
+        style="@style/MineCertifateStyle"
+        android:text="身份证正面" />
+
+    <com.phone.funoutdoors.view.IDCartView
+        android:background="@android:color/white"
+        android:id="@+id/cart_font_image"
+        style="@style/MineCertifateStyle"
+        android:layout_weight="1"
+        app:bgImage="@mipmap/front"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp" />
+    <!--身份证反面-->
+    <TextView
+        style="@style/MineCertifateStyle"
+        android:text="身份证反面" />
+
+    <com.phone.funoutdoors.view.IDCartView
+        android:background="@android:color/white"
+        android:id="@+id/cart_back_image"
+        style="@style/MineCertifateStyle"
+        android:layout_weight="1"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        app:bgImage="@mipmap/back" />
+    <!--手持身份证拍照-->
+    <TextView
+        style="@style/MineCertifateStyle"
+        android:text="手持身份证拍照" />
+
+    <com.phone.funoutdoors.view.IDCartView
+        android:background="@android:color/white"
+        android:id="@+id/people_card"
+        style="@style/MineCertifateStyle"
+        android:layout_weight="1"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        app:bgImage="@mipmap/people_card" />
+</LinearLayout>

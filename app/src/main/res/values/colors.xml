@@ -12,8 +12,10 @@
     <color name="edit_hint">#8e8f90</color>
     <color name="edit_cursor">#307430</color>
     <color name="orangle">#FF6600</color>
+    <color name="windowBg">#83181717</color>
     <color name="grey_white">#f5f4f4</color>
     <color name="singleblue">#75c2f2</color>
     <color name="polu">#faf76dce</color>
-    <color name="windowBg">#83181717</color>
+    <color name="message">#989595</color>
+    <color name="setting_grey">#d5d5d5</color>
 </resources>

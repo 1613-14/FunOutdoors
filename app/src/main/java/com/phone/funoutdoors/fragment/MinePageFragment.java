@@ -18,9 +18,14 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.phone.funoutdoors.R;
 import com.phone.funoutdoors.activity.LoginActivity;
+import com.phone.funoutdoors.activity.MinePage_BannerActivity;
 import com.phone.funoutdoors.activity.MinePage_CertificateActivity;
+import com.phone.funoutdoors.activity.MinePage_MessageActivity;
+import com.phone.funoutdoors.activity.MinePage_SettingActivity;
 import com.phone.funoutdoors.bean.User;
 import com.phone.funoutdoors.db.UserDBManager;
+import com.phone.funoutdoors.utils.Constant;
+import com.phone.funoutdoors.utils.PopupWindowScreen;
 import com.phone.funoutdoors.view.LoginedBannerItem;
 
 import java.util.List;
@@ -64,7 +69,7 @@ public class MinePageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         SharedPreferences config = context.getSharedPreferences("config", Context.MODE_PRIVATE);
-        boolean isLogin =config.getBoolean("login",false);
+        boolean isLogin = config.getBoolean("login", false);
         if (!isLogin) {
             Intent intent = new Intent(getActivity(), LoginActivity.class);
             startActivityForResult(intent, 100);
@@ -82,29 +87,40 @@ public class MinePageFragment extends Fragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.headPic:
-                Log.e("TAG", "头像");
+                PopupWindowScreen.getInstance().showDialog(context, getActivity());
                 break;
             case R.id.edit_img:
                 Log.e("TAG", "编辑");
                 break;
             case R.id.banner_dicovered:
-                Log.e("TAG", "发现");
+                Intent intent2 = new Intent(context, MinePage_BannerActivity.class);
+                intent2.putExtra("type", Constant.MESSAGE_SYSTEM);
+                intent2.putExtra("title", "我的发现");
+                startActivity(intent2);
                 break;
             case R.id.banner_route:
-                Log.e("TAG", "路线");
+                Intent intent3 = new Intent(context, MinePage_BannerActivity.class);
+                intent3.putExtra("type", Constant.MESSAGE_NOTIFICATION);
+                intent3.putExtra("title", "我的路线");
+                startActivity(intent3);
                 break;
             case R.id.banner_travel:
-                Log.e("TAG", "游记");
+                Intent intent4 = new Intent(context, MinePage_BannerActivity.class);
+                intent4.putExtra("type", Constant.MESSAGE_PRIVATE);
+                intent4.putExtra("title", "我的游记");
+                startActivity(intent4);
                 break;
             case R.id.logined_certification:
-                Intent intent = new Intent(context, MinePage_CertificateActivity.class);
-                startActivity(intent);
+                Intent intent5 = new Intent(context, MinePage_CertificateActivity.class);
+                startActivity(intent5);
                 break;
             case R.id.logined_message:
-                Log.e("TAG", "消息");
+                Intent intent6 = new Intent(context, MinePage_MessageActivity.class);
+                startActivity(intent6);
                 break;
             case R.id.logined_setting:
-                Log.e("TAG", "设置");
+                Intent intent7 = new Intent(context, MinePage_SettingActivity.class);
+                startActivity(intent7);
                 break;
             case R.id.fans:
                 Log.e("TAG", "粉丝");
@@ -113,6 +129,7 @@ public class MinePageFragment extends Fragment {
                 Log.e("TAG", "关注");
                 break;
         }
+        getActivity().overridePendingTransition(R.anim.activity_open, 0);
     }
 
     /**
@@ -136,4 +153,5 @@ public class MinePageFragment extends Fragment {
         //设置当前用户的发现、游记、路线
         //TODO
     }
+
 }

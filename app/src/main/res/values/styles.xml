@@ -79,6 +79,16 @@
         <item name="android:layout_marginRight">15dp</item>
         <item name="android:textColor">@android:color/darker_gray</item>
     </style>
+    <!-- 设置中的textview的样式-->
+    <style name="SettingButtonStyle">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">left</item>
+        <item name="android:background">@drawable/button_bg_selector</item>
+    </style>
 
     <style name="MyPopWindowAnimation">
         <item name="android:windowEnterAnimation">@anim/pop_enter</item>

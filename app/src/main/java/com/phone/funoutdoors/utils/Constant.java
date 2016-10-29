@@ -19,4 +19,10 @@ public class Constant {
     public static final int TEXTVIEW_AND_BUTTON = 4;
     //趣户外的服务协议地址
     public static final String SERVERAGREEMENT = "http://www.microposi.com/ServiceAgreement.html";
+    //我的模块--消息模块--系统消息
+    public static final int MESSAGE_SYSTEM = 1;
+    //我的模块--消息模块--通知中心
+    public static final int MESSAGE_NOTIFICATION = 2;
+    //我的模块--消息模块--私信
+    public static final int MESSAGE_PRIVATE = 3;
 }
