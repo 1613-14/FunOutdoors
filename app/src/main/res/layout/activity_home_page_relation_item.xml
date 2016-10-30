@@ -5,19 +5,21 @@
 
     <ImageView
         android:id="@+id/relation_img"
-        android:layout_width="200dp"
+        android:layout_width="260dp"
         android:layout_height="150dp"
+        android:src="@mipmap/ic_launcher"
         android:scaleType="centerCrop" />
 
     <ImageView
         android:id="@+id/relation_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@mipmap/ic_launcher"
         android:layout_centerInParent="true" />
 
     <TextView
         android:id="@+id/relation_media_type"
-        android:layout_width="wrap_content"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"

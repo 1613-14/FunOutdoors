@@ -6,6 +6,12 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
 
+    sourceSets {
+        main (){
+            jniLibs.srcDir 'libs'
+        }
+    }
+
     defaultConfig {
         applicationId "com.phone.funoutdoors"
         minSdkVersion 15
@@ -48,4 +54,11 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile project(':pullToRefresh_Library')
     compile files('src/main/libs/volley.jar')
+    compile files('src/main/libs/baidumapapi_base_v4_0_0.jar')
+    compile files('src/main/libs/baidumapapi_cloud_v4_0_0.jar')
+    compile files('src/main/libs/baidumapapi_map_v4_0_0.jar')
+    compile files('src/main/libs/baidumapapi_radar_v4_0_0.jar')
+    compile files('src/main/libs/baidumapapi_search_v4_0_0.jar')
+    compile files('src/main/libs/baidumapapi_util_v4_0_0.jar')
+    compile files('src/main/libs/locSDK_6.13.jar')
 }

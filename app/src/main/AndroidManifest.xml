@@ -15,7 +15,16 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <!-- 集成百度地图 -->
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
+        android:name=".application.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
@@ -68,6 +77,17 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- 百度地图集成 -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="7GnCkphgTABVVxlWFP7SyHutwwCXEr6E" />
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+
         <activity android:name=".activity.RegisterActivity" />
         <!-- 趣户外服务协议 -->
         <activity android:name=".activity.ServerAgreementActivity" />
@@ -81,6 +101,8 @@
         <activity android:name=".activity.MinePage_BannerActivity" />
         <activity android:name=".activity.HomePage_Scene_MoreActivity" />
         <activity android:name=".activity.HomePage_QuboActivity" />
+        <activity android:name=".activity.HomePage_Scene_MapActivity" />
+        <activity android:name=".activity.HomePage_Qubo_VideoPalyActivity"></activity>
         <activity android:name=".activity.MinePage_EditPersonActivity"></activity>
     </application>
 

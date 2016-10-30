@@ -103,7 +103,7 @@ public class HomePageFragment extends Fragment {
 
     private void showPopUp(View v) {
         LinearLayout layout = new LinearLayout(context);
-        layout.setBackgroundResource(R.drawable.dialog_bg);
+        layout.setBackgroundResource(R.drawable.dialog_net_bg);
         TextView tv = new TextView(context);
         tv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         tv.setText("连接失败!!!");
@@ -171,41 +171,35 @@ public class HomePageFragment extends Fragment {
      *
      * @param info
      */
-    private void setScene(HomeInfo info) {
+    private void setScene(final HomeInfo info) {
         for (int i = 0; i < info.getDestination().size(); i++) {
-            setSceneItem(info, i);
+            String[] split = info.getDestination().get(i).getDestination_img1().split("#");
+            View view = View.inflate(context, R.layout.fragment_home_page_item_scene, null);
+            RelativeLayout.LayoutParams ll = new RelativeLayout.LayoutParams(700, 400);
+            ll.leftMargin = 10;
+            ImageView destination_img1 = (ImageView) view.findViewById(R.id.destination_img1);
+            destination_img1.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            destination_img1.setLayoutParams(ll);
+            TextView destination_name = (TextView) view.findViewById(R.id.destination_name);
+            destination_name.setText(info.getDestination().get(i).getDestination_name());
+            Glide.with(context).load(application.getPicPath() + split[1]).placeholder(R.mipmap.default_img).into(destination_img1);
+            scene_hsv.addView(view);
+
+            final int finalI = i;
+            destination_img1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, HomePage_SceneActivity.class);
+                    intent.putExtra("title", info.getDestination().get(finalI).getDestination_name());
+                    intent.putExtra("destination_id", info.getDestination().get(finalI).getDestination_id());
+                    startActivity(intent);
+                }
+            });
         }
     }
 
-    /**
-     * 设置景色的详细操作
-     *
-     * @param info
-     * @param i
-     */
-    private void setSceneItem(final HomeInfo info, final int i) {
-        String[] split = info.getDestination().get(i).getDestination_img1().split("#");
-        View view = View.inflate(context, R.layout.fragment_home_page_item_scene, null);
-        RelativeLayout.LayoutParams ll = new RelativeLayout.LayoutParams(700, 400);
-        ll.leftMargin = 10;
-        ImageView destination_img1 = (ImageView) view.findViewById(R.id.destination_img1);
-        destination_img1.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        destination_img1.setLayoutParams(ll);
-        TextView destination_name = (TextView) view.findViewById(R.id.destination_name);
-        destination_name.setText(info.getDestination().get(i).getDestination_name());
-        Glide.with(context).load(application.getPicPath() + split[1]).placeholder(R.mipmap.default_img).into(destination_img1);
-        scene_hsv.addView(view);
 
-        destination_img1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, HomePage_SceneActivity.class);
-                intent.putExtra("title", info.getDestination().get(i).getDestination_name());
-                intent.putExtra("destination_id", info.getDestination().get(i).getDestination_id());
-                startActivity(intent);
-            }
-        });
-    }
+
 
     /**
      * 图片自动播放

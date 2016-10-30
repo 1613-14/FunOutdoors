@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -80,6 +81,17 @@ public class HomePage_SceneActivity extends AppCompatActivity {
         int destination_id = intent.getIntExtra("destination_id", 0);
         HomePageUtils.setToolbar(this, home_page_toolbar, home_page_banner_toolbar_title, title, R.menu.home_page_toolbar_map_menu);
         downSceneJson(destination_id);
+
+        home_page_toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent intent = new Intent(HomePage_SceneActivity.this, HomePage_Scene_MapActivity.class);
+                intent.putExtra("destination_alti", scene.getResultList().get(0).getDestination_lati());
+                intent.putExtra("destination_longi", scene.getResultList().get(0).getDestination_longi());
+                startActivity(intent);
+                return true;
+            }
+        });
     }
 
     /**
@@ -101,10 +113,10 @@ public class HomePage_SceneActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<Scene> call, Response<Scene> response) {
                     scene = response.body();
+                    setPicturePlayItem(scene);
                     destination_summary.setText(scene.getResultList().get(0).getDestination_summary());
                     List<Scene.ResultListBean.TopRealScenesBean> list = scene.getResultList().get(0).getTop_real_scenes();
                     HomePageUtils.setQubo(HomePage_SceneActivity.this, list, scene_item_video, null);
-                    setPicturePlayItem(scene);
                     setRouter();
                 }
 
@@ -133,7 +145,7 @@ public class HomePage_SceneActivity extends AppCompatActivity {
             image.setLayoutParams(ll);
             image.setScaleType(ImageView.ScaleType.CENTER_CROP);
             String path = Constant.PICPATH + pic_url;
-            Glide.with(this).load(path).placeholder(R.mipmap.default_img).into(image);
+            Glide.with(getApplication()).load(path).placeholder(R.mipmap.default_img).into(image);
             final int finalI = i;
             image.setOnClickListener(new View.OnClickListener() {
                 @Override

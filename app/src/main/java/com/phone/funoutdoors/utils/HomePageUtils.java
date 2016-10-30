@@ -34,7 +34,9 @@ public class HomePageUtils {
      */
     public static void setToolbar(final Activity context, Toolbar home_page_toolbar, TextView home_page_banner_toolbar_title, String title, int resId) {
         home_page_toolbar.setTitle("");
-        home_page_toolbar.inflateMenu(resId);
+        if (resId != 0) {
+            home_page_toolbar.inflateMenu(resId);
+        }
         home_page_banner_toolbar_title.setText(title);
         home_page_toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +44,7 @@ public class HomePageUtils {
                 context.finish();
             }
         });
+
     }
 
 
@@ -185,6 +188,7 @@ public class HomePageUtils {
 
     /**
      * 景点类型
+     *
      * @param type       类型值
      * @param scene_type 类型名称
      */

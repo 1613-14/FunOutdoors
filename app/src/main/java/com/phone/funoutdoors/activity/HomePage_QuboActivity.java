@@ -1,13 +1,19 @@
 package com.phone.funoutdoors.activity;
 
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -70,7 +76,6 @@ public class HomePage_QuboActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page_qubo);
         ButterKnife.bind(this);
-
         scene_id = getIntent().getIntExtra("scene_id", 0);
         int tag = getIntent().getIntExtra("tag", 1);
         switch (tag) {
@@ -148,6 +153,40 @@ public class HomePage_QuboActivity extends AppCompatActivity {
         final List<Qubo.ResultListBean.RelationBean> list = bean.getRelation();
         HomePageRelationAdapter adapter = new HomePageRelationAdapter(list, this);
         relation.setAdapter(adapter);
+        qubo_scene_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int type = HomePageUtils.getNetworkType(HomePage_QuboActivity.this);
+                if (type != 1) {
+                    View view = View.inflate(HomePage_QuboActivity.this, R.layout.activity_home_page_net_dialog, null);
+                    Button commit_bnt = (Button) view.findViewById(R.id.commit_bnt);
+                    Button cancel_bnt = (Button) view.findViewById(R.id.cancel_bnt);
+                    final PopupWindow pop = new PopupWindow(view, ViewPager.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    commit_bnt.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(HomePage_QuboActivity.this, HomePage_Qubo_VideoPalyActivity.class);
+                            intent.putExtra("time", bean.getMedia_time());
+                            intent.putExtra("media_type", bean.getMedia_type());
+                            intent.putExtra("video", bean.getScene_video());
+                            startActivity(intent);
+                            pop.dismiss();
+                        }
+                    });
+                    cancel_bnt.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            pop.dismiss();
+                        }
+                    });
+                    pop.setOutsideTouchable(true);
+                    pop.setFocusable(true);
+                    pop.setBackgroundDrawable(new BitmapDrawable());
+                    pop.showAtLocation(qubo_scene_img, Gravity.CENTER, 0, 0);
+                }
+
+            }
+        });
         adapter.setListener(new HomeRecyclerListener() {
             @Override
             public void onItemListener(int position) {
