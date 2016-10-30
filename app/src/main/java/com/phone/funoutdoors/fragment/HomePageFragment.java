@@ -101,6 +101,11 @@ public class HomePageFragment extends Fragment {
     }
 
 
+    /**
+     * 网络连接失败的弹出框
+     *
+     * @param v
+     */
     private void showPopUp(View v) {
         LinearLayout layout = new LinearLayout(context);
         layout.setBackgroundResource(R.drawable.dialog_net_bg);
@@ -119,7 +124,7 @@ public class HomePageFragment extends Fragment {
             public void run() {
                 popupWindow.dismiss();
             }
-        },5000);
+        }, 5000);
 
 
     }
@@ -197,8 +202,6 @@ public class HomePageFragment extends Fragment {
             });
         }
     }
-
-
 
 
     /**
@@ -331,6 +334,17 @@ public class HomePageFragment extends Fragment {
     public void onClick(View view) {
         Intent intent = new Intent(context, HomePage_SearchActivity.class);
         startActivity(intent);
+    }
+
+
+    @OnClick({R.id.more_qubo, R.id.more_scene})
+    public void onMoreClick(View view) {
+        switch (view.getId()) {
+            case R.id.more_scene:
+                break;
+            case R.id.more_qubo:
+                break;
+        }
     }
 
 }

@@ -65,6 +65,7 @@
             </HorizontalScrollView>
 
             <TextView
+                android:id="@+id/more_scene"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -98,6 +99,7 @@
                 android:orientation="vertical"></com.phone.funoutdoors.view.MyListView>
 
             <TextView
+                android:id="@+id/more_qubo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"

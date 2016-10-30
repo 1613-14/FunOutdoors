@@ -102,8 +102,9 @@
         <activity android:name=".activity.HomePage_Scene_MoreActivity" />
         <activity android:name=".activity.HomePage_QuboActivity" />
         <activity android:name=".activity.HomePage_Scene_MapActivity" />
-        <activity android:name=".activity.HomePage_Qubo_VideoPalyActivity"></activity>
-        <activity android:name=".activity.MinePage_EditPersonActivity"></activity>
+        <activity android:name=".activity.HomePage_Qubo_VideoPalyActivity" />
+        <activity android:name=".activity.MinePage_EditPersonActivity" />
+        <activity android:name=".activity.HomePage_More_SceneActivity"></activity>
     </application>
 
 </manifest>
