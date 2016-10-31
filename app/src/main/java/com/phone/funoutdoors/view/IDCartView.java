@@ -44,4 +44,7 @@ public class IDCartView extends FrameLayout {
     public void setBgImage(String path, Context context) {
         Glide.with(context).load(path).into(idCartImage);
     }
+    public ImageView getBgImage(){
+        return idCartImage;
+    }
 }

@@ -66,6 +66,8 @@ public class MinePage_SettingActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.offLineMap:
+                Intent intent = new Intent(this,OfflineActivity.class);
+                startActivity(intent);
                 break;
             case R.id.safe:
                 break;
@@ -77,6 +79,7 @@ public class MinePage_SettingActivity extends AppCompatActivity {
                 showDialog();
                 break;
         }
+        overridePendingTransition(R.anim.activity_open,0);
     }
 
 

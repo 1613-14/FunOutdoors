@@ -1,16 +1,90 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:focusable="false"
     tools:context=".fragment.GuestPageFragment">
 
-   <!--头部图片-->
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <!--推荐游记-->
-        
-    <!--达人专访-->
-    <!--推荐达人-->
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--如何成为趣客-->
+        <ImageView
+            android:id="@+id/tv_promotion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <!--推荐游记-->
+        <com.phone.funoutdoors.view.SplitLineView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+            app:lineColor="@color/setting_grey"
+            app:textContent="推荐游记" />
+
+        <com.phone.funoutdoors.view.MyListView
+            android:id="@+id/list_guide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="查看更多游记>>" />
+        <!--达人专访-->
+        <com.phone.funoutdoors.view.SplitLineView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="15dp"
+            app:lineColor="@color/setting_grey"
+            app:textContent="达人专访" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <GridView
+                    android:id="@+id/gridlist_scene"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="查看更多专访>>" />
+        <!--推荐达人-->
+        <com.phone.funoutdoors.view.SplitLineView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="15dp"
+            app:lineColor="@color/setting_grey"
+            app:textContent="推荐达人" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_daren"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="查看更多达人>>" />
+    </LinearLayout>
+</ScrollView>

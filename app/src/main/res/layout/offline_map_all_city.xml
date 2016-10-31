@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_marginLeft="2dp"
+        android:background="@color/map_item_bg"
+        android:gravity="center_vertical"
+        android:text="全部城市"
+        android:textColor="@color/bg_mine"
+        android:textSize="16sp" />
+
+    <com.phone.funoutdoors.view.MyExpandableListView
+        android:id="@+id/allcitylist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alwaysDrawnWithCache="false"
+        android:cacheColorHint="#00000000"
+        android:scrollbars="none"
+        android:scrollingCache="false" />
+</LinearLayout>

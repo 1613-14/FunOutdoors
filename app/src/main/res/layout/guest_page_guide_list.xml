@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_cover"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="5dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_avatar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="162dp"
+        android:layout_alignTop="@+id/iv_cover"
+        android:layout_alignLeft="@+id/iv_cover"
+        android:layout_alignStart="@+id/iv_cover" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_nickname"
+        android:layout_alignStart="@+id/tv_nickname"
+        android:layout_alignTop="@+id/civ_avatar"
+        android:text="标题"
+        android:textColor="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/tv_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_cover"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:layout_toRightOf="@+id/civ_avatar"
+        android:text="昵称" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/iv_cover"
+        android:layout_marginRight="5dp"
+        android:id="@+id/linearLayout">
+
+        <TextView
+            android:id="@+id/tv_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="11dp"
+            android:layout_marginRight="11dp"
+            android:drawableLeft="@mipmap/view_small_grey"
+            android:text="关注" />
+
+        <TextView
+            android:id="@+id/tv_discuss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv_nickname"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:drawableLeft="@mipmap/comment_small_grey"
+            android:text=" 评论" />
+
+        <TextView
+            android:id="@+id/tv_praise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/love_small_grey"
+            android:text=" 点赞" />
+    </LinearLayout>
+
+</RelativeLayout>

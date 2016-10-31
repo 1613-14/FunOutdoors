@@ -3,6 +3,7 @@
     <!--自定义分割线加文本的控件的属性-->
     <declare-styleable name="SplitLineView">
         <attr name="textContent" format="string" />
+        <attr name="lineColor" format="color"/>
     </declare-styleable>
     <!--自定义已登录后的导航条目的控件的属性-->
     <declare-styleable name="LoginedBannerItem">

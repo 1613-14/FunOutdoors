@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <!--头部-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/toolbar_item" />
+
+        <LinearLayout
+            android:id="@+id/city_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:padding="1dp">
+
+            <Button
+                android:id="@+id/clButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/offline_bnt_city_selected"
+                android:onClick="clickCityListButton"
+                android:padding="8dp"
+                android:text="城市列表"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/localButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/offline_bnt_manage_default"
+                android:onClick="clickLocalMapListButton"
+                android:padding="8dp"
+                android:text="下载管理"
+                android:textColor="#4196fd" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/search_city"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/search_view_bind"
+        android:drawableLeft="@mipmap/search"
+        android:hint="请输入城市名"
+        android:imeOptions="actionSearch"
+        android:padding="10dp"
+        android:textColorHint="@android:color/darker_gray" />
+    <!--自动提示的listview-->
+    <ListView
+        android:id="@+id/auto_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!-- 当前城市-->
+            <include
+                layout="@layout/offline_map_pre_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <!-- 热门城市-->
+            <include
+                layout="@layout/offline_map_hot_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <!-- 全部城市-->
+            <include
+                layout="@layout/offline_map_all_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

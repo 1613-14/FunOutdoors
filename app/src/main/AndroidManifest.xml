@@ -104,7 +104,8 @@
         <activity android:name=".activity.HomePage_Scene_MapActivity" />
         <activity android:name=".activity.HomePage_Qubo_VideoPalyActivity" />
         <activity android:name=".activity.MinePage_EditPersonActivity" />
-        <activity android:name=".activity.HomePage_More_SceneActivity"></activity>
+        <activity android:name=".activity.OfflineActivity" />
+        <activity android:name=".activity.OfflineMapManagerActivity"></activity>
     </application>
 
 </manifest>
