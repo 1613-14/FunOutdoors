@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.phone.funoutdoors.activity.OfflineMapManagerActivity">
+    <!--头部-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/toolbar_item" />
+
+        <LinearLayout
+            android:id="@+id/city_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:padding="1dp">
+
+            <Button
+                android:id="@+id/clButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/offline_bnt_city_default"
+                android:onClick="clickCityListButton"
+                android:padding="8dp"
+                android:text="城市列表"
+                android:textColor="#4196fd" />
+
+            <Button
+                android:id="@+id/localButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/offline_bnt_manage_selected"
+                android:onClick="clickLocalMapListButton"
+                android:padding="8dp"
+                android:text="下载管理"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </RelativeLayout>
+    <!--正在下载-->
+    <include
+        layout="@layout/offline_map_downloading_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <!--已下载-->
+    <include
+        layout="@layout/offline_map_downloaded_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

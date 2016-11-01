@@ -85,4 +85,6 @@ public class UserDBManager {
         builder.where(UserDao.Properties.User_id.eq(id));
         return builder.list();
     }
+
+    
 }

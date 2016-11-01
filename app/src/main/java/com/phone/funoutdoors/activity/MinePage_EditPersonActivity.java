@@ -1,8 +1,13 @@
 package com.phone.funoutdoors.activity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -71,7 +76,7 @@ public class MinePage_EditPersonActivity extends AppCompatActivity {
         });
     }
 
-    @OnClick({R.id.person_head,R.id.person_nickname, R.id.person_sex, R.id.person_birth, R.id.person_qr, R.id.person_city, R.id.person_description})
+    @OnClick({R.id.person_head, R.id.person_nickname, R.id.person_sex, R.id.person_birth, R.id.person_qr, R.id.person_city, R.id.person_description})
     public void onClick(View view) {
         PopupWindowScreen instance = PopupWindowScreen.getInstance();
         switch (view.getId()) {
@@ -87,10 +92,12 @@ public class MinePage_EditPersonActivity extends AppCompatActivity {
                 Log.e("TAG", "生日");
                 break;
             case R.id.person_qr:
-                Log.e("TAG", "我的二维码");
+                Intent intent = new Intent(this, MinePageQRActivity.class);
+                startActivity(intent);
                 break;
             case R.id.person_city:
-                Log.e("TAG", "我的城市");
+                Intent intent1 = new Intent(this, CityActivity.class);
+                startActivityForResult(intent1, 100);
                 break;
             case R.id.person_description:
                 Log.e("TAG", "签名");
@@ -119,7 +126,7 @@ public class MinePage_EditPersonActivity extends AppCompatActivity {
      */
     private void setPersonQr() {
         ImageView v = new ImageView(this);
-        v.setPadding(2, 2, 2, 2);
+        v.setPadding(5, 5, 5, 5);
         v.setImageResource(R.mipmap.dimensionalcode);
         personQr.addView(v);
     }
@@ -207,5 +214,35 @@ public class MinePage_EditPersonActivity extends AppCompatActivity {
             Glide.with(this).load(u.getHeadIcon()).into(v);
         }
         personHead.addView(v);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101 && resultCode == RESULT_OK && data != null) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+            ImageView view = (ImageView) personHead.getChildAt(0);
+            view.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+
+        } else if (requestCode == 100) {
+            String city = data.getStringExtra("city");
+            if (!TextUtils.isEmpty(city)) {
+                TextView v = new TextView(this);
+                v.setPadding(2, 2, 2, 2);
+                v.setGravity(Gravity.CENTER);
+                v.setText(city);
+                personNickname.addView(v);
+                personCity.addView(v);
+            }
+        }
     }
 }

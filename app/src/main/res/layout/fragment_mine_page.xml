@@ -20,16 +20,28 @@
         style="@style/UserBottomTextStyle"
         android:drawableLeft="@mipmap/certification_bg"
         android:text="     认证" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/setting_grey" />
+
     <TextView
         android:id="@+id/logined_message"
         style="@style/UserBottomTextStyle"
         android:drawableLeft="@mipmap/user_center_message"
         android:text="     消息" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/setting_grey" />
+
     <TextView
-        android:drawableBottom="@android:color/white"
         android:id="@+id/logined_setting"
         style="@style/UserBottomTextStyle"
         android:background="@android:color/white"
+        android:drawableBottom="@android:color/white"
         android:drawableLeft="@mipmap/setting_s"
         android:text="     设置" />
 </LinearLayout>

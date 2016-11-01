@@ -4,6 +4,7 @@
     android:layout_height="wrap_content">
 
     <TextView
+        android:id="@+id/pre_line"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_gravity="center_vertical"
@@ -20,6 +21,7 @@
         android:textColor="@color/colorAccent" />
 
     <TextView
+        android:id="@+id/after_line"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_gravity="center_vertical"

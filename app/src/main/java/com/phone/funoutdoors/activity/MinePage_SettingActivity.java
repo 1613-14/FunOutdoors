@@ -66,6 +66,8 @@ public class MinePage_SettingActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.offLineMap:
+                Intent intent = new Intent(this, OfflineActivity.class);
+                startActivity(intent);
                 break;
             case R.id.safe:
                 break;
@@ -77,6 +79,7 @@ public class MinePage_SettingActivity extends AppCompatActivity {
                 showDialog();
                 break;
         }
+        overridePendingTransition(R.anim.activity_open, 0);
     }
 
 
@@ -90,11 +93,8 @@ public class MinePage_SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 v.setFocusable(true);
-                getSharedPreferences("config", MODE_PRIVATE).edit().putBoolean("login", false);
-                Intent intent = new Intent(MinePage_SettingActivity.this, MainActivity.class);
-                startActivity(intent);
+                getSharedPreferences("config", MODE_PRIVATE).edit().putBoolean("login", false).commit();
                 finish();
-                popupWindow.dismiss();
             }
         });
         Button getupBnt = (Button) exitDialog.findViewById(R.id.getup_bnt);

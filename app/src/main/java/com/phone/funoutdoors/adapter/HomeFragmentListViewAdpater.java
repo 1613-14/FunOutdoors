@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,11 +28,13 @@ public class HomeFragmentListViewAdpater extends BaseAdapter {
     List<HomeInfo.RealSceneBean>  list;
     Context context;
     LayoutInflater inflater;
+    private Animation animation;
 
     public HomeFragmentListViewAdpater(List<HomeInfo.RealSceneBean>  list, Context context) {
         this.list = list;
         this.context = context;
         inflater = LayoutInflater.from(context);
+        animation = AnimationUtils.loadAnimation(context, R.anim.listview_anim);
     }
 
     @Override
@@ -60,6 +64,7 @@ public class HomeFragmentListViewAdpater extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+        convertView.startAnimation(animation);
         Glide.with(context).load(Constant.PICPATH + list.get(position).getScene_img()).into(holder.qubo_image);
         int type = list.get(position).getMedia_type();
         HomePageUtils.getMediaType(type, holder.media_typeName, holder.media_type);

@@ -26,6 +26,7 @@
             android:background="#d5d5d5" />
 
         <TextView
+            android:id="@+id/camera"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -40,6 +41,7 @@
             android:background="#d5d5d5" />
 
         <TextView
+            android:id="@+id/photo_abum"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
@@ -51,6 +53,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
