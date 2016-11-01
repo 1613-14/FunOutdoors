@@ -98,13 +98,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 100) {
-            fth_tabHost.setCurrentTab(position);
-        }
-        if (requestCode == 101) {
-            recreate();
-        }
-
-
+        fth_tabHost.setCurrentTab(position);
     }
 }

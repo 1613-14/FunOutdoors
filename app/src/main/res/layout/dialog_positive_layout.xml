@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/dialog_bg">
+    android:layout_width="300dp"
+    android:layout_height="250dp"
+    android:background="@drawable/register_dialog_bg">
 
     <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:orientation="vertical">
 
         <TextView

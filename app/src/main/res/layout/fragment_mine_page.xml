@@ -18,6 +18,7 @@
     <TextView
         android:id="@+id/logined_certification"
         style="@style/UserBottomTextStyle"
+        android:drawableLeft="@mipmap/certification_bg"
         android:text="     认证" />
 
     <View
@@ -28,6 +29,7 @@
     <TextView
         android:id="@+id/logined_message"
         style="@style/UserBottomTextStyle"
+        android:drawableLeft="@mipmap/user_center_message"
         android:text="     消息" />
 
     <View

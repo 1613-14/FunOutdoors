@@ -62,4 +62,5 @@ dependencies {
     compile files('src/main/libs/baidumapapi_util_v4_0_0.jar')
     compile files('src/main/libs/locSDK_6.13.jar')
     compile files('src/main/libs/xUtils-2.6.14.jar')
+    compile project(':zxinglibrary')
 }

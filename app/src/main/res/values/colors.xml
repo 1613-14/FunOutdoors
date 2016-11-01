@@ -21,4 +21,5 @@
     <color name="yellow">#f4dd17</color>
     <color name="map_item_bg">#f0efed</color>
     <color name="newVersion">#1c7fbd</color>
+    <color name="share">#ff646464</color>
 </resources>

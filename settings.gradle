@@ -1,2 +1,2 @@
-include ':app', ':pullToRefresh_Library'
+include ':app', ':pullToRefresh_Library', ':zxinglibrary'
 include ':androidautoscrollviewpager'

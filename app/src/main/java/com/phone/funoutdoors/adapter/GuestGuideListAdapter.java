@@ -4,13 +4,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.phone.funoutdoors.R;
-import com.phone.funoutdoors.bean.GuestData;
+import com.phone.funoutdoors.bean.GuideBean;
 import com.phone.funoutdoors.utils.Constant;
 
 import java.util.List;
@@ -23,14 +25,16 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by Administrator on 2016/10/31.
  */
 public class GuestGuideListAdapter extends BaseAdapter {
-    private List<GuestData.GuideBean> list;
+    private List<GuideBean> list;
     private Context context;
     private LayoutInflater inflater;
+    private Animation animation;
 
-    public GuestGuideListAdapter(List<GuestData.GuideBean> list, Context context) {
+    public GuestGuideListAdapter(List<GuideBean> list, Context context) {
         this.list = list;
         this.context = context;
         inflater = LayoutInflater.from(context);
+        animation = AnimationUtils.loadAnimation(context, R.anim.listview_anim);
     }
 
     @Override
@@ -58,7 +62,8 @@ public class GuestGuideListAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        GuestData.GuideBean guideBean = list.get(position);
+        convertView.startAnimation(animation);
+        GuideBean guideBean = list.get(position);
         viewHolder.tvDiscuss.setText(String.valueOf(guideBean.getDiscuss_count()));
         viewHolder.tvNickname.setText(guideBean.getNickname());
         viewHolder.tvPraise.setText(String.valueOf(guideBean.getPraise_count()));

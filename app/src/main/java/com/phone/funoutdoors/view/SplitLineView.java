@@ -28,7 +28,7 @@ public class SplitLineView extends LinearLayout {
     public SplitLineView(Context context, AttributeSet attrs) {
         super(context, attrs);
         textContent = attrs.getAttributeValue(Constant.NAMESPACE, "textContent");
-        lineColor = attrs.getAttributeIntValue(Constant.NAMESPACE, "lineColor", R.color.setting_grey);
+        lineColor = attrs.getAttributeIntValue(Constant.NAMESPACE, "lineColor",R.color.colorAccent);
         initView(context);
     }
 

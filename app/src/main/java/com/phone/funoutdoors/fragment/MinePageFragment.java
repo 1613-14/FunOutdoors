@@ -122,7 +122,7 @@ public class MinePageFragment extends Fragment {
                 break;
             case R.id.logined_setting:
                 Intent intent7 = new Intent(context, MinePage_SettingActivity.class);
-                startActivityForResult(intent7,101);
+                startActivityForResult(intent7, 101);
                 break;
             case R.id.fans:
                 Log.e("TAG", "粉丝");

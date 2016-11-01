@@ -23,6 +23,14 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <!-- 调用系统相机进行自定义拍照 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.Camera" />
+    <uses-feature android:name="android.hardware.Camera.autofocus" />
+    <!-- 申请震动器的权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:name=".application.MyApplication"
         android:allowBackup="true"
@@ -105,7 +113,12 @@
         <activity android:name=".activity.HomePage_Qubo_VideoPalyActivity" />
         <activity android:name=".activity.MinePage_EditPersonActivity" />
         <activity android:name=".activity.OfflineActivity" />
-        <activity android:name=".activity.OfflineMapManagerActivity"></activity>
+        <activity android:name=".activity.OfflineMapManagerActivity" />
+        <activity android:name=".activity.GuestPagePromotionActivity" />
+        <activity android:name=".activity.GuestPageGuideMoreActivity" />
+        <activity android:name=".activity.GuestGuideDetailActivity" />
+        <activity android:name=".activity.MinePageQRActivity" />
+        <activity android:name=".activity.CityActivity" />
     </application>
 
 </manifest>

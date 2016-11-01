@@ -3,7 +3,7 @@
     <!--自定义分割线加文本的控件的属性-->
     <declare-styleable name="SplitLineView">
         <attr name="textContent" format="string" />
-        <attr name="lineColor" format="color"/>
+        <attr name="lineColor" format="color" />
     </declare-styleable>
     <!--自定义已登录后的导航条目的控件的属性-->
     <declare-styleable name="LoginedBannerItem">
@@ -20,6 +20,10 @@
     </declare-styleable>
     <!--自定义个人资料的每一个item-->
     <declare-styleable name="PersonInfoItem">
-        <attr name="leftTitle" format="string"/>
+        <attr name="leftTitle" format="string" />
+    </declare-styleable>
+    <!-- 游记日期安排列表-->
+    <declare-styleable name="GuideDetailItem">
+        <attr name="dataTitle" format="string" />
     </declare-styleable>
 </resources>
