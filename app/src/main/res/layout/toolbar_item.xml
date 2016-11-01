@@ -14,13 +14,39 @@
         android:minHeight="?attr/actionBarSize"
         app:navigationIcon="@mipmap/back_grey">
 
+
         <TextView
             android:id="@+id/home_page_banner_toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
             android:layout_centerInParent="true"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/home_page_banner_toolbar_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:drawableRight="@mipmap/wzkj_w_choose_small3x_o"
+            android:textColor="#45A1EE"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/home_page_banner_toolbar_bnt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="right"
+            android:layout_marginRight="5dp"
+            android:drawablePadding="5dp"
+            android:drawableRight="@mipmap/wzkj_w_choose_small3x_o"
+            android:text="全部"
+            android:textColor="#45A1EE"
+            android:textSize="14sp"
+            android:visibility="gone" />
     </android.support.v7.widget.Toolbar>
 
     <TextView

@@ -204,7 +204,7 @@ public class HomePageUtils {
                 scene_type.setText("#专访#");
                 break;
             case 4:
-                scene_type.setText("#未知#");
+                scene_type.setText("#线路#");
                 break;
             case 5:
                 scene_type.setText("#猎奇#");

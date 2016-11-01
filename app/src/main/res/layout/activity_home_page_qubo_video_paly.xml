@@ -5,4 +5,18 @@
     android:layout_height="match_parent"
     tools:context="com.phone.funoutdoors.activity.HomePage_Qubo_VideoPalyActivity">
 
+
+    <VideoView
+        android:id="@+id/qubo_video_play"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white" />
+
+
+    <ImageView
+        android:id="@+id/qubo_video_back"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="15dp"
+        android:src="@mipmap/back_w" />
 </RelativeLayout>

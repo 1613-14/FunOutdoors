@@ -116,7 +116,7 @@ public class HomePage_SceneActivity extends AppCompatActivity {
                     setPicturePlayItem(scene);
                     destination_summary.setText(scene.getResultList().get(0).getDestination_summary());
                     List<Scene.ResultListBean.TopRealScenesBean> list = scene.getResultList().get(0).getTop_real_scenes();
-                    HomePageUtils.setQubo(HomePage_SceneActivity.this, list, scene_item_video, null);
+                    HomePageUtils.setQubo(getApplicationContext(), list, scene_item_video, null);
                     setRouter();
                 }
 

@@ -19,6 +19,9 @@
     <color name="message">#989595</color>
     <color name="setting_grey">#d5d5d5</color>
     <color name="yellow">#f4dd17</color>
+    <color name="blue">#45A1EE</color>
+    <color name="textDark">#222</color>
+    <color name="textLight">#555</color>
     <color name="map_item_bg">#f0efed</color>
     <color name="newVersion">#1c7fbd</color>
     <color name="share">#ff646464</color>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.phone.funoutdoors.activity.Guest_More_DaRenActivity">
+
+    <include
+        layout="@layout/toolbar_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></include>
+
+    <com.phone.funoutdoors.view.MySwipeRefreshView
+        android:id="@+id/mySwipeRefreshView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/guest_recycle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#30d5d5d5"></ListView>
+
+    </com.phone.funoutdoors.view.MySwipeRefreshView>
+</LinearLayout>

@@ -1,2 +1,3 @@
+include ':app', ':pullToRefresh_Library', ':libraries:panowidget', ':libraries:videowidget', ':libraries:common', ':libraries:commonwidget'
 include ':app', ':pullToRefresh_Library', ':zxinglibrary'
 include ':androidautoscrollviewpager'

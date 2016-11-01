@@ -12,6 +12,12 @@
         <item name="android:textColorHighlight">#ffffff</item>
         <item name="android:textColorHint">#ffffff</item>
     </style>
+    <!--VR视频专用-->
+    <style name="ContentText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">5dip</item>
+    </style>
     <!--提示文本的颜色-->
     <style name="layoutHint" parent="TextAppearance.Design.Hint">
         <item name="android:textColor">@android:color/white</item>

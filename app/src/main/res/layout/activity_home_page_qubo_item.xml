@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="30dp"
-            android:drawableTop="@mipmap/love"
+            android:drawableTop="@mipmap/heart80"
             android:gravity="center" />
 
         <TextView
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="30dp"
             android:layout_toRightOf="@id/qubo_scene_praise_count"
-            android:drawableTop="@mipmap/comment"
+            android:drawableTop="@mipmap/comment80"
             android:gravity="center" />
 
         <TextView
@@ -87,14 +87,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/qubo_scene_discuss_count"
-            android:drawableTop="@mipmap/view_small_grey" />
+            android:drawableTop="@mipmap/view80" />
 
         <TextView
             android:id="@+id/qubo_scene_share"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:drawableTop="@mipmap/travel_share"
+            android:drawableTop="@mipmap/share80"
             android:text="分享" />
 
         <TextView

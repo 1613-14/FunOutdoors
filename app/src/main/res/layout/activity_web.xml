@@ -13,9 +13,10 @@
         <ImageView
             android:id="@+id/image_web_back"
             android:layout_width="30dp"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
             android:layout_alignParentLeft="true"
-            android:src="@mipmap/back" />
+            android:src="@mipmap/back_h" />
 
         <TextView
             android:id="@+id/text_web_title"

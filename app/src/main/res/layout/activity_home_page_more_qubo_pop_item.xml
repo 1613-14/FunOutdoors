@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+
+    <com.phone.funoutdoors.view.MyButton
+        android:id="@+id/qubo_pop_bnt"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/qubo_bnt_selected"
+        android:gravity="center"
+        android:minHeight="?android:attr/listPreferredItemHeightSmall"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:textColor="@drawable/qubo_title_selected"
+        android:textSize="14sp" />
+
+</LinearLayout>

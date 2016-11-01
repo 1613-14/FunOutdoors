@@ -36,19 +36,10 @@
         android:allowBackup="true"
         android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.HomePage_BannerActivity" />
-        <activity android:name=".activity.HomePage_SearchActivity" />
-        <activity android:name=".activity.HomePage_SceneActivity" />
 
         <!-- 集成shareSDK配置 -->
         <activity
@@ -96,6 +87,17 @@
             android:enabled="true"
             android:process=":remote" />
 
+        <activity android:name=".activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.HomePage_BannerActivity" />
+        <activity android:name=".activity.HomePage_SearchActivity" />
+        <activity android:name=".activity.HomePage_SceneActivity" />
         <activity android:name=".activity.RegisterActivity" />
         <!-- 趣户外服务协议 -->
         <activity android:name=".activity.ServerAgreementActivity" />
@@ -110,8 +112,24 @@
         <activity android:name=".activity.HomePage_Scene_MoreActivity" />
         <activity android:name=".activity.HomePage_QuboActivity" />
         <activity android:name=".activity.HomePage_Scene_MapActivity" />
-        <activity android:name=".activity.HomePage_Qubo_VideoPalyActivity" />
+        <activity
+            android:name=".activity.HomePage_Qubo_VideoPalyActivity"
+            android:screenOrientation="landscape" />
         <activity android:name=".activity.MinePage_EditPersonActivity" />
+        <activity android:name=".activity.HomePage_More_SceneActivity" />
+        <activity android:name=".activity.HomePage_More_QuboActivity" />
+        <activity android:name=".activity.HomePage_Search_ItemActivity" />
+        <activity android:name=".activity.Guest_More_DaRenActivity"></activity>
+        <activity android:name=".activity.Guest_DaRen_InfoActivity"></activity>
+        <activity
+            android:name=".vr.SimpleVrVideoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".vr.SimpleVrPanoramaActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
         <activity android:name=".activity.OfflineActivity" />
         <activity android:name=".activity.OfflineMapManagerActivity" />
         <activity android:name=".activity.GuestPagePromotionActivity" />

@@ -3,6 +3,7 @@ package com.phone.funoutdoors.activity;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -12,6 +13,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -29,8 +31,11 @@ import com.phone.funoutdoors.R;
 import com.phone.funoutdoors.adapter.HomePageRelationAdapter;
 import com.phone.funoutdoors.bean.Qubo;
 import com.phone.funoutdoors.interfaces.HomeRecyclerListener;
+import com.phone.funoutdoors.utils.ConnectionUtils;
 import com.phone.funoutdoors.utils.Constant;
 import com.phone.funoutdoors.utils.HomePageUtils;
+import com.phone.funoutdoors.vr.SimpleVrPanoramaActivity;
+import com.phone.funoutdoors.vr.SimpleVrVideoActivity;
 
 import java.util.HashMap;
 import java.util.List;
@@ -64,9 +69,12 @@ public class HomePage_QuboActivity extends AppCompatActivity {
     TextView qubo_scene_info;
     @BindView(R.id.relation)
     RecyclerView relation;
+    @BindView(R.id.fragment_container)
+    FrameLayout fragment_container;
     @BindView(R.id.cardView)
     CardView cardView;
     private RequestQueue requestQueue;
+    private Handler handler = new Handler();
 
 
     private int scene_id;
@@ -136,7 +144,7 @@ public class HomePage_QuboActivity extends AppCompatActivity {
      * @param bean
      */
     private void setDataForLayout(final Qubo.ResultListBean bean) {
-        Glide.with(HomePage_QuboActivity.this).load(Constant.PICPATH + bean.getScene_img()).into(qubo_scene_img);
+        Glide.with(getApplicationContext()).load(Constant.PICPATH + bean.getScene_img()).into(qubo_scene_img);
         HomePageUtils.getMediaType(bean.getMedia_type(), qubo_scene_mediatitle, qubo_scene_mediaimg);
         HomePageUtils.getSceneType(bean.getScene_type(), qubo_scene_type);
         qubo_scene_title.setText(bean.getScene_title());
@@ -153,38 +161,43 @@ public class HomePage_QuboActivity extends AppCompatActivity {
         final List<Qubo.ResultListBean.RelationBean> list = bean.getRelation();
         HomePageRelationAdapter adapter = new HomePageRelationAdapter(list, this);
         relation.setAdapter(adapter);
+
         qubo_scene_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int type = HomePageUtils.getNetworkType(HomePage_QuboActivity.this);
-                if (type != 1) {
-                    View view = View.inflate(HomePage_QuboActivity.this, R.layout.activity_home_page_net_dialog, null);
-                    Button commit_bnt = (Button) view.findViewById(R.id.commit_bnt);
-                    Button cancel_bnt = (Button) view.findViewById(R.id.cancel_bnt);
-                    final PopupWindow pop = new PopupWindow(view, ViewPager.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                    commit_bnt.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(HomePage_QuboActivity.this, HomePage_Qubo_VideoPalyActivity.class);
-                            intent.putExtra("time", bean.getMedia_time());
-                            intent.putExtra("media_type", bean.getMedia_type());
-                            intent.putExtra("video", bean.getScene_video());
-                            startActivity(intent);
-                            pop.dismiss();
-                        }
-                    });
-                    cancel_bnt.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            pop.dismiss();
-                        }
-                    });
-                    pop.setOutsideTouchable(true);
-                    pop.setFocusable(true);
-                    pop.setBackgroundDrawable(new BitmapDrawable());
-                    pop.showAtLocation(qubo_scene_img, Gravity.CENTER, 0, 0);
+//                判断是否有网
+                if (HomePageUtils.isNetworkConnected(HomePage_QuboActivity.this)) {
+//                    判断是否是WiFi，若不是
+                    if (HomePageUtils.getNetworkType(HomePage_QuboActivity.this) != 1) {
+                        View view = View.inflate(HomePage_QuboActivity.this, R.layout.activity_home_page_net_dialog, null);
+                        Button commit_bnt = (Button) view.findViewById(R.id.commit_bnt);
+                        Button cancel_bnt = (Button) view.findViewById(R.id.cancel_bnt);
+                        final PopupWindow pop = new PopupWindow(view, ViewPager.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        commit_bnt.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                toNextActivity(bean);
+                                pop.dismiss();
+                            }
+                        });
+                        cancel_bnt.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                pop.dismiss();
+                            }
+                        });
+                        pop.setOutsideTouchable(true);
+                        pop.setFocusable(true);
+                        pop.setBackgroundDrawable(new BitmapDrawable());
+                        pop.showAtLocation(qubo_scene_img, Gravity.CENTER, 0, 0);
+                    } else {
+//                        判断是否是WiFi，若是
+                        toNextActivity(bean);
+                    }
+                } else {
+//                    判断是否有网，无网
+                    ConnectionUtils.showConnectionFailure(HomePage_QuboActivity.this, handler, fragment_container);
                 }
-
             }
         });
         adapter.setListener(new HomeRecyclerListener() {
@@ -206,6 +219,25 @@ public class HomePage_QuboActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void toNextActivity(Qubo.ResultListBean bean) {
+        Intent intent = new Intent();
+        switch (bean.getMedia_type()) {
+            case 1:
+                intent.setClass(HomePage_QuboActivity.this, HomePage_Qubo_VideoPalyActivity.class);
+                intent.putExtra("time", bean.getMedia_time());
+                break;
+            case 2:
+                intent.setClass(HomePage_QuboActivity.this, SimpleVrPanoramaActivity.class);
+                intent.putExtra("time", bean.getMedia_time());
+                break;
+            case 3:
+                intent.setClass(HomePage_QuboActivity.this, SimpleVrVideoActivity.class);
+                break;
+        }
+        intent.putExtra("video", bean.getScene_video());
+        startActivity(intent);
     }
 
 

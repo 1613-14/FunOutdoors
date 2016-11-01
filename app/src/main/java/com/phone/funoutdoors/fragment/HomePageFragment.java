@@ -3,12 +3,10 @@ package com.phone.funoutdoors.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +14,14 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.phone.funoutdoors.R;
 import com.phone.funoutdoors.activity.HomePage_BannerActivity;
+import com.phone.funoutdoors.activity.HomePage_More_QuboActivity;
+import com.phone.funoutdoors.activity.HomePage_More_SceneActivity;
 import com.phone.funoutdoors.activity.HomePage_QuboActivity;
 import com.phone.funoutdoors.activity.HomePage_SceneActivity;
 import com.phone.funoutdoors.activity.HomePage_SearchActivity;
@@ -32,6 +31,7 @@ import com.phone.funoutdoors.application.MyApplication;
 import com.phone.funoutdoors.bean.Direction;
 import com.phone.funoutdoors.bean.HomeInfo;
 import com.phone.funoutdoors.interfaces.HomeRequestData;
+import com.phone.funoutdoors.utils.ConnectionUtils;
 import com.phone.funoutdoors.utils.HomePageUtils;
 import com.phone.funoutdoors.utils.ZoomOutPageTransformer;
 import com.phone.funoutdoors.view.MyListView;
@@ -93,41 +93,13 @@ public class HomePageFragment extends Fragment {
             downContentInfo();
             downDirectionInfo();
         } else {
-//            fragment_container.setVisibility(View.INVISIBLE);
-            showPopUp(fragment_container);
-
+            fragment_container.setVisibility(View.INVISIBLE);
+            ConnectionUtils.showConnectionFailure(context,handler,fragment_container);
         }
         return view;
     }
 
 
-    /**
-     * 网络连接失败的弹出框
-     *
-     * @param v
-     */
-    private void showPopUp(View v) {
-        LinearLayout layout = new LinearLayout(context);
-        layout.setBackgroundResource(R.drawable.dialog_net_bg);
-        TextView tv = new TextView(context);
-        tv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        tv.setText("连接失败!!!");
-        layout.addView(tv);
-        final PopupWindow popupWindow = new PopupWindow(layout, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        popupWindow.setAnimationStyle(R.style.MyPopWindowAnimation);
-        popupWindow.setFocusable(true);
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.setBackgroundDrawable(new BitmapDrawable());
-        popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                popupWindow.dismiss();
-            }
-        }, 5000);
-
-
-    }
 
     /**
      * 下载全部信息
@@ -313,7 +285,19 @@ public class HomePageFragment extends Fragment {
                     view.setLayoutParams(ll);
                     ImageView driection_icon = (ImageView) view.findViewById(R.id.direction_icon);
                     Glide.with(context).load(info.getIcon().get(i).getIcon_url()).into(driection_icon);
-                    home_page_direction.addView(view);
+                    if (home_page_direction.getChildCount() == i) {
+                        home_page_direction.addView(view);
+                    }
+                    final int finalI = i;
+                    view.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(context, HomePage_More_SceneActivity.class);
+                            intent.putExtra("region_id", finalI + 1);
+                            startActivity(intent);
+
+                        }
+                    });
                 }
             }
 
@@ -337,12 +321,21 @@ public class HomePageFragment extends Fragment {
     }
 
 
+    /**
+     * 更多景点，更多趣播
+     *
+     * @param view
+     */
     @OnClick({R.id.more_qubo, R.id.more_scene})
     public void onMoreClick(View view) {
         switch (view.getId()) {
             case R.id.more_scene:
+                Intent intent = new Intent(context, HomePage_More_SceneActivity.class);
+                startActivity(intent);
                 break;
             case R.id.more_qubo:
+                Intent intent1 = new Intent(context, HomePage_More_QuboActivity.class);
+                startActivity(intent1);
                 break;
         }
     }
