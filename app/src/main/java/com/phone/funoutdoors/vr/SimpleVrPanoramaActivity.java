@@ -193,7 +193,6 @@ public class SimpleVrPanoramaActivity extends Activity {
                 istr = HttpUtils.downImageFromNet(video);
                 panoOptions = fileInformation[0].second;
             }
-
             panoWidgetView.loadImageFromBitmap(BitmapFactory.decodeStream(istr), panoOptions);
             try {
                 istr.close();

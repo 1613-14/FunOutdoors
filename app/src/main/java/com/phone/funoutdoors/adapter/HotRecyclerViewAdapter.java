@@ -55,7 +55,7 @@ public class HotRecyclerViewAdapter extends RecyclerView.Adapter<HotRecyclerView
     public void onBindViewHolder(MyViewHolder holder, int position) {
         int screenWidth = context.getResources().getDisplayMetrics().widthPixels;
         holder.hotUserName.setText(list.get(position).getNickname());
-        Glide.with(context).load(Constant.SPILT_IMG_URL + list.get(position).getOut_img1()).placeholder(R.mipmap.ic_launcher).into(holder.hotUserHead);
+        Glide.with(context).load(Constant.SPILT_IMG_URL + list.get(position).getOut_img1()).placeholder(R.mipmap.avtor_default).into(holder.hotUserHead);
         holder.hotContent.setText(list.get(position).getOut_content());
         holder.hotLikeCounts.setText(String.valueOf(list.get(position).getPraise_count()));
         holder.hotCommentCounts.setText(String.valueOf(list.get(position).getDiscuss_count()));

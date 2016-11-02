@@ -195,11 +195,11 @@ public class HomePageFragment extends Fragment {
         }
         ImageView spot = (ImageView) home_page_viewPager_spot.getChildAt(0);
         spot.setImageResource(R.drawable.banner_spot_selected);
-        home_page_viewPager.setBorderAnimation(true);
-        home_page_viewPager.setInterval(3000);
         home_page_viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
-        home_page_viewPager.setAdapter(new HomeViewPageAdapter(images));
+        home_page_viewPager.setBorderAnimation(false);
+        home_page_viewPager.setInterval(5000);
         home_page_viewPager.startAutoScroll();
+        home_page_viewPager.setAdapter(new HomeViewPageAdapter(images));
         home_page_viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

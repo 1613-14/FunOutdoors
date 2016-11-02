@@ -121,7 +121,7 @@ public class ConsultPageFragment extends Fragment {
 
                     feature_cover = consultLVHeaderData.getResultList().get(0).getFeature_cover();
                     headerTitle.setText(feature_title);
-                    Glide.with(context).load(Constant.SPILT_IMG_URL + feature_img).placeholder(R.mipmap.ic_launcher).into(headerImage);
+                    Glide.with(context).load(Constant.SPILT_IMG_URL + feature_img).placeholder(R.mipmap.default_img).into(headerImage);
                 }
             }
 

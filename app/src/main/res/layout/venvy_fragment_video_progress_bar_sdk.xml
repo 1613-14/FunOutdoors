@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/progressBar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#BABABA"
+    android:clickable="true">
+
+    <ProgressBar
+        android:id="@+id/sdk_ijk_progress_bar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:indeterminateBehavior="repeat"
+        android:indeterminateDrawable="@drawable/venvy_video_sdk_ijk_progress_bar_bg"
+        android:indeterminateOnly="true" />
+
+
+</RelativeLayout>

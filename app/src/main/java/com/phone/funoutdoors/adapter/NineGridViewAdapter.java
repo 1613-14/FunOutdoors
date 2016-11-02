@@ -1,14 +1,12 @@
 package com.phone.funoutdoors.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.phone.funoutdoors.R;
 import com.phone.funoutdoors.bean.Hot;
 import com.phone.funoutdoors.utils.Constant;
@@ -25,10 +23,10 @@ public class NineGridViewAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private int width;
 
-    public NineGridViewAdapter(Context context, List<Hot.ResultListBean.OutdoorsBean.ImgsBean> list,int width) {
+    public NineGridViewAdapter(Context context, List<Hot.ResultListBean.OutdoorsBean.ImgsBean> list, int width) {
         this.context = context;
         this.list = list;
-        this.width=width;
+        this.width = width;
         inflater = LayoutInflater.from(context);
     }
 
@@ -58,8 +56,7 @@ public class NineGridViewAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        Picasso.with(context).load(Constant.SPILT_IMG_URL + list.get(position).getImg_url()).resize(width, width).placeholder(R.mipmap.ic_launcher).into(holder.imageView);
-        Log.e("dfs", "getView: " + Constant.SPILT_IMG_URL + list.get(position).getImg_url());
+        Picasso.with(context).load(Constant.SPILT_IMG_URL + list.get(position).getImg_url()).resize(width, width).placeholder(R.mipmap.default_img).into(holder.imageView);
         return convertView;
     }
 

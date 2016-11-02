@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -94,15 +93,12 @@ public class HomePage_More_QuboActivity extends AppCompatActivity {
     }
 
     private void downParseJson(final int type, final int pageNo) {
-        Log.e("TAG", "downParseJson: type"+type);
-        Log.e("TAG", "downParseJson: "+totalList.size() );
         requestQueue = Volley.newRequestQueue(this);
         StringRequest request = new StringRequest(Request.Method.POST,
                 "http://www.quhuwai.cn/webservice/qhw1001/func_sub1106",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
-                        Log.e("TAG", "onResponse: "+s);
                         Gson gson = new Gson();
                         qubo = gson.fromJson(s, MoreQubo.class);
                         List<MoreQubo.ResultListBean> list = qubo.getResultList();

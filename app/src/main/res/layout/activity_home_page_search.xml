@@ -4,61 +4,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:padding="10dp"
-    tools:context="com.phone.funoutdoors.activity.HomePage_SearchActivity">
+    android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/layout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@mipmap/quwan_searchbox"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="10dp"
+        tools:context="com.phone.funoutdoors.activity.HomePage_SearchActivity">
 
-        <TextView
-            android:id="@+id/search_type"
+        <LinearLayout
+            android:id="@+id/layout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableRight="@mipmap/detail_downx"
-            android:text="景点"
-            android:textSize="14sp" />
-
-        <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_gravity="center"
-            android:layout_marginRight="5dp"
-            android:src="@mipmap/home_page_header_search" />
-
-        <EditText
-            android:id="@+id/search_content"
-            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@null"
-            android:hint="输入关键字进行搜索"
-            android:textColorHint="@android:color/darker_gray"
-            android:textSize="14sp" />
+            android:background="@mipmap/quwan_searchbox"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
-        <ImageView
-            android:id="@+id/cancel_search"
+            <TextView
+                android:id="@+id/search_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableRight="@mipmap/detail_downx"
+                android:text="景点"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="5dp"
+                android:src="@mipmap/home_page_header_search" />
+
+            <EditText
+                android:id="@+id/search_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="输入关键字进行搜索"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/cancel_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/search_clear_normal"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/search_commit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@id/layout"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="取消"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/history_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"></ListView>
+
+        <TextView
+            android:id="@+id/clearHistory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@mipmap/search_clear_normal"
-            android:visibility="gone" />
+            android:layout_marginTop="20dp"
+            android:background="@drawable/history_recetage"
+            android:text="清空历史记录"
+            android:textColor="@android:color/holo_orange_light"
+            android:textSize="18sp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/search_commit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/layout"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:layout_marginTop="8dp"
-        android:text="取消"
-        android:textSize="16sp" />
 </LinearLayout>

@@ -13,11 +13,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.phone.funoutdoors.R;
+import com.phone.funoutdoors.bean.SearchDB;
+import com.phone.funoutdoors.db.SearchDBManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,10 +36,16 @@ public class HomePage_SearchActivity extends AppCompatActivity {
     EditText search_content;
     @BindView(R.id.search_commit)
     TextView search_commit;
+    @BindView(R.id.listView)
+    ListView listView;
+    @BindView(R.id.history_search)
+    LinearLayout history_search;
     @BindView(R.id.cancel_search)
     ImageView cancel_search;
     private int width, searchFlg = 1;
-    private String[] titles = new String[]{ "游记", "线路", "达人", "景点", "趣播"};
+    private String[] titles = new String[]{"游记", "线路", "达人", "景点", "趣播"};
+    private int size = 0;
+    private SearchDBManager instance;
 
 
     @Override
@@ -64,9 +76,11 @@ public class HomePage_SearchActivity extends AppCompatActivity {
 
             }
         });
-
+        instance = SearchDBManager.getInstance(this);
+        List<SearchDB> searchDBs = instance.querySearch();
+        size = searchDBs.size();
+        searchKey(String.valueOf(searchFlg));
     }
-
 
     /**
      * 设置弹出窗体
@@ -103,12 +117,14 @@ public class HomePage_SearchActivity extends AppCompatActivity {
                 }
                 search_type.setText(titles[position]);
                 search_content.setText("");
+                searchKey(String.valueOf(searchFlg));
                 pop.dismiss();
             }
         });
     }
 
-    @OnClick({R.id.search_type,R.id.cancel_search, R.id.search_commit})
+
+    @OnClick({R.id.search_type, R.id.cancel_search, R.id.search_commit, R.id.clearHistory})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.search_type:
@@ -119,15 +135,67 @@ public class HomePage_SearchActivity extends AppCompatActivity {
                 break;
             case R.id.search_commit:
                 if (search_commit.getText().equals("搜索")) {
-                    Intent intent = new Intent(this, HomePage_Search_ItemActivity.class);
-                    intent.putExtra("keyword", search_content.getText().toString());
-                    intent.putExtra("flag", searchFlg);
-                    intent.putExtra("search_type", search_type.getText().toString());
-                    startActivity(intent);
+                    String value = search_content.getText().toString();
+                    setData(value);
                 } else {
                     finish();
                 }
                 break;
+
+            case R.id.clearHistory:
+                instance.deleteSearch();
+                history_search.setVisibility(View.GONE);
+                break;
+        }
+    }
+
+    /**
+     * 跳转Activity
+     *
+     * @param value
+     */
+    private void setData(String value) {
+        if (instance.querySearchContent(value).size() == 0) {
+            SearchDB search = new SearchDB(size + 1, String.valueOf(searchFlg), value);
+            instance.insertSearch(search);
+        }
+        Intent intent = new Intent(this, HomePage_Search_ItemActivity.class);
+        intent.putExtra("keyword", value);
+        intent.putExtra("flag", searchFlg);
+        intent.putExtra("search_type", search_type.getText().toString());
+        startActivity(intent);
+    }
+
+    /**
+     * 获取关键字
+     */
+    private void searchKey(String searchFlag) {
+
+        List<SearchDB> keyList = instance.queryKey(searchFlag);
+        if (keyList.size() > 0) {
+            history_search.setVisibility(View.VISIBLE);
+            List<String> list = new ArrayList<>();
+            if (listView.getHeaderViewsCount() == 0) {
+                TextView view = new TextView(this);
+                view.setText("历史搜索");
+                view.setTextColor(getResources().getColor(android.R.color.darker_gray));
+                view.setTextSize(15);
+                listView.addHeaderView(view);
+                for (int i = 0; i < keyList.size(); i++) {
+                    list.add(keyList.get(i).getSearchContent());
+                }
+            }
+            final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
+            listView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    setData(adapter.getItem(position - 1).toString());
+                }
+            });
+        } else {
+            history_search.setVisibility(View.GONE);
         }
     }
 

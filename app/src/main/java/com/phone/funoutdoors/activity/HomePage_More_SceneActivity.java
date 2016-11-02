@@ -5,8 +5,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,10 +23,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.phone.funoutdoors.R;
-import com.phone.funoutdoors.adapter.HomeSceneMoreRecyclerAdapter;
+import com.phone.funoutdoors.adapter.HomeSceneMoreListViewAdapter;
 import com.phone.funoutdoors.bean.MoreScene;
-import com.phone.funoutdoors.interfaces.HomeRecyclerListener;
 import com.phone.funoutdoors.utils.HomePageUtils;
+import com.phone.funoutdoors.view.MySwipeRefreshView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,16 +43,16 @@ public class HomePage_More_SceneActivity extends AppCompatActivity {
     @BindView(R.id.home_page_banner_toolbar_image)
     TextView home_page_banner_toolbar_image;
     @BindView(R.id.more_scene_listView)
-    RecyclerView more_scene_listView;
+    ListView more_scene_listView;
     @BindView(R.id.home_page_banner_toolbar_title)
     TextView home_page_banner_toolbar_title;
     @BindView(R.id.more_scene_refresh)
-    SwipeRefreshLayout more_scene_refresh;
+    MySwipeRefreshView more_scene_refresh;
     private int region_id, width, pageNo = 1;
     private String[] titles = new String[]{"西南", "西北", "东北", "华东", "华南", "华北"};
     private RequestQueue requestQueue;
     List<MoreScene.ResultListBean> totalList = new ArrayList<>();
-    private HomeSceneMoreRecyclerAdapter adapter;
+    private HomeSceneMoreListViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +63,15 @@ public class HomePage_More_SceneActivity extends AppCompatActivity {
         region_id = getIntent().getIntExtra("region_id", 1);
         setPopWindow();
         downParseJson(region_id, pageNo);
+        initListener();
+        adapter = new HomeSceneMoreListViewAdapter(totalList, HomePage_More_SceneActivity.this);
+        more_scene_listView.setAdapter(adapter);
+    }
+
+    /**
+     * 设置SwipeRefreshView的监听事件
+     */
+    private void initListener() {
         more_scene_refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -73,12 +80,13 @@ public class HomePage_More_SceneActivity extends AppCompatActivity {
 
             }
         });
-        LinearLayoutManager manager = new LinearLayoutManager(HomePage_More_SceneActivity.this);
-        more_scene_listView.setLayoutManager(manager);
-        adapter = new HomeSceneMoreRecyclerAdapter(HomePage_More_SceneActivity.this);
-        adapter.setList(totalList);
-        adapter.notifyDataSetChanged();
-        more_scene_listView.setAdapter(adapter);
+        more_scene_refresh.setOnUpRefreshListener(new MySwipeRefreshView.OnUpRefreshListener() {
+            @Override
+            public void onUpRefreshListener() {
+                pageNo++;
+                downParseJson(region_id, pageNo);
+            }
+        });
     }
 
     /**
@@ -94,6 +102,8 @@ public class HomePage_More_SceneActivity extends AppCompatActivity {
                         Gson gson = new Gson();
                         MoreScene scene = gson.fromJson(s, MoreScene.class);
                         setLayoutData(scene);
+                        totalList.addAll(scene.getResultList());
+                        adapter.notifyDataSetChanged();
                         more_scene_refresh.setRefreshing(false);
                     }
                 },
@@ -130,11 +140,10 @@ public class HomePage_More_SceneActivity extends AppCompatActivity {
     private void setLayoutData(MoreScene scene) {
         final List<MoreScene.ResultListBean> list = scene.getResultList();
         totalList.addAll(list);
-        adapter.setList(totalList);
         adapter.notifyDataSetChanged();
-        adapter.setListener(new HomeRecyclerListener() {
+        more_scene_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemListener(int position) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(HomePage_More_SceneActivity.this, HomePage_SceneActivity.class);
                 intent.putExtra("title", list.get(position).getDestination_name());
                 intent.putExtra("destination_id", list.get(position).getDestination_id());

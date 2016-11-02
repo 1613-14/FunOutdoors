@@ -63,8 +63,18 @@ public class HomePage_Search_ItemActivity extends AppCompatActivity {
         view.setLayoutParams(ll);
         ((ViewGroup) search_listView.getParent()).addView(view);
         search_listView.setEmptyView(view);
+        home_page_toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage_Search_ItemActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
+        downParseJson(flag, keyword);
+    }
 
+    private void downParseJson(final int flag, final String keyword) {
         requestQueue = Volley.newRequestQueue(this);
         StringRequest request = new StringRequest(Request.Method.POST,
                 "http://www.quhuwai.cn/webservice/qhw1001/func_sub0001",
@@ -126,5 +136,10 @@ public class HomePage_Search_ItemActivity extends AppCompatActivity {
             }
         };
         requestQueue.add(request);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

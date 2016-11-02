@@ -7,7 +7,7 @@ public class Constant {
     //自定义组合控件的命名空间
     public static final String NAMESPACE = "http://schemas.android.com/apk/res-auto";
     public static final String SPILT_IMG_URL="http://image.quhuwai.cn/";
-    public static final String SPILT_VIDEO_URL=" http://video.quhuwai.cn/";
+    public static final String SPILT_VIDEO_URL="http://video.quhuwai.cn/";
     public static final String PICPATH = "http://image.quhuwai.cn/";
     //弹出框只带TextView的情况
     public static final int TEXTVIEW = 1;

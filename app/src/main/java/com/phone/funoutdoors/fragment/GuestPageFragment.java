@@ -19,6 +19,7 @@ import com.phone.funoutdoors.R;
 import com.phone.funoutdoors.activity.GuestGuideDetailActivity;
 import com.phone.funoutdoors.activity.GuestPageGuideMoreActivity;
 import com.phone.funoutdoors.activity.GuestPagePromotionActivity;
+import com.phone.funoutdoors.activity.Guest_More_InivateActivity;
 import com.phone.funoutdoors.activity.Guest_DaRen_InfoActivity;
 import com.phone.funoutdoors.activity.Guest_More_DaRenActivity;
 import com.phone.funoutdoors.activity.HomePage_QuboActivity;
@@ -192,8 +193,8 @@ public class GuestPageFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(context, GuestGuideDetailActivity.class);
-                intent.putExtra("actId", guideList.get(position).getAct_id());
-                intent.putExtra("userId", guideList.get(position).getUser_id());
+                intent.putExtra("actId",guideList.get(position).getAct_id());
+                intent.putExtra("userId",guideList.get(position).getUser_id());
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.activity_open, 0);
             }
@@ -210,11 +211,13 @@ public class GuestPageFragment extends Fragment {
                 }
                 break;
             case R.id.scene_more:
+                Intent intent2 = new Intent(context, Guest_More_InivateActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.daren_more:
                 if (darenList.size() > 0) {
-                    Intent intent = new Intent(context, Guest_More_DaRenActivity.class);
-                    startActivity(intent);
+                    Intent intent1 = new Intent(context, Guest_More_DaRenActivity.class);
+                    startActivity(intent1);
                 }
                 break;
         }
