@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.phone.funoutdoors.R;
 import com.phone.funoutdoors.bean.GuestData;
+import com.phone.funoutdoors.interfaces.GuestSceneItemClick;
 import com.phone.funoutdoors.utils.Constant;
 
 import java.util.List;
@@ -26,11 +27,16 @@ public class GuestSceneListAdapter extends RecyclerView.Adapter<GuestSceneListAd
     private List<GuestData.SceneBean> list;
     private Context context;
     private LayoutInflater inflater;
+    private GuestSceneItemClick sceneItemClick;
 
     public GuestSceneListAdapter(List<GuestData.SceneBean> list, Context context) {
         this.list = list;
         this.context = context;
         inflater = LayoutInflater.from(context);
+    }
+
+    public void setSceneItemClick(GuestSceneItemClick sceneItemClick) {
+        this.sceneItemClick = sceneItemClick;
     }
 
     @Override
@@ -45,11 +51,18 @@ public class GuestSceneListAdapter extends RecyclerView.Adapter<GuestSceneListAd
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        GuestData.SceneBean sceneBean = list.get(position);
-        int widthPixels = context.getResources().getDisplayMetrics().widthPixels;
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
+        final GuestData.SceneBean sceneBean = list.get(position);
         Glide.with(context).load(Constant.PICPATH + sceneBean.getScene_img()).into(holder.sceneImag);
         holder.sceneTitle.setText(sceneBean.getScene_title());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (sceneItemClick != null) {
+                    sceneItemClick.onItemClick(sceneBean.getScene_id());
+                }
+            }
+        });
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {

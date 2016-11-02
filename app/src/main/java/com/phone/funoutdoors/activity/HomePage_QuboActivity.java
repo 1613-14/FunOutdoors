@@ -44,6 +44,8 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 
 public class HomePage_QuboActivity extends AppCompatActivity {
 
@@ -73,6 +75,8 @@ public class HomePage_QuboActivity extends AppCompatActivity {
     FrameLayout fragment_container;
     @BindView(R.id.cardView)
     CardView cardView;
+    @BindView(R.id.qubo_scene_share)
+    TextView quboSceneShare;
     private RequestQueue requestQueue;
     private Handler handler = new Handler();
 
@@ -95,9 +99,28 @@ public class HomePage_QuboActivity extends AppCompatActivity {
                 break;
         }
         downParseJson();
+        quboSceneShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showShare();
+            }
+        });
 
     }
-
+    /**
+     * 分享菜单的处理事件
+     */
+    private void showShare() {
+        ShareSDK.initSDK(this);
+        OnekeyShare oks = new OnekeyShare();
+        //关闭sso授权
+        oks.disableSSOWhenAuthorize();
+        // siteUrl是分享此内容的网站地址，仅在QQ空间使用
+        //oks.setSiteUrl(url);
+        //设置是否隐藏编辑页面
+        oks.setSilent(false);
+        oks.show(this);
+    }
     /**
      * 下载解析Json
      */

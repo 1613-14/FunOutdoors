@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +19,18 @@ import com.phone.funoutdoors.R;
 import com.phone.funoutdoors.activity.GuestGuideDetailActivity;
 import com.phone.funoutdoors.activity.GuestPageGuideMoreActivity;
 import com.phone.funoutdoors.activity.GuestPagePromotionActivity;
+import com.phone.funoutdoors.activity.Guest_DaRen_InfoActivity;
+import com.phone.funoutdoors.activity.Guest_More_DaRenActivity;
+import com.phone.funoutdoors.activity.HomePage_QuboActivity;
 import com.phone.funoutdoors.adapter.GuestDarenListAdapter;
 import com.phone.funoutdoors.adapter.GuestGuideListAdapter;
 import com.phone.funoutdoors.adapter.GuestSceneListAdapter;
 import com.phone.funoutdoors.bean.GuestData;
 import com.phone.funoutdoors.bean.GuideBean;
 import com.phone.funoutdoors.interfaces.GetGuestData;
+import com.phone.funoutdoors.interfaces.GuestSceneItemClick;
 import com.phone.funoutdoors.utils.Constant;
+import com.phone.funoutdoors.view.MyGridView;
 import com.phone.funoutdoors.view.MyListView;
 
 import java.util.List;
@@ -53,7 +57,7 @@ public class GuestPageFragment extends Fragment {
     @BindView(R.id.list_scene)
     RecyclerView listScene;
     @BindView(R.id.recycler_daren)
-    RecyclerView recyclerDaren;
+    MyGridView recyclerDaren;
     @BindView(R.id.guide_more)
     TextView guideMore;
     @BindView(R.id.scene_more)
@@ -148,10 +152,16 @@ public class GuestPageFragment extends Fragment {
      * 设置达人
      */
     private void setDaren() {
-        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        recyclerDaren.setLayoutManager(manager);
         GuestDarenListAdapter guestDarenListAdapter = new GuestDarenListAdapter(darenList, context);
         recyclerDaren.setAdapter(guestDarenListAdapter);
+        recyclerDaren.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(context, Guest_DaRen_InfoActivity.class);
+                intent.putExtra("userId", darenList.get(position).getUser_id());
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -162,6 +172,14 @@ public class GuestPageFragment extends Fragment {
         listScene.setLayoutManager(gridLayoutManager);
         GuestSceneListAdapter guestGuideListAdapter = new GuestSceneListAdapter(sceneList, context);
         listScene.setAdapter(guestGuideListAdapter);
+        guestGuideListAdapter.setSceneItemClick(new GuestSceneItemClick() {
+            @Override
+            public void onItemClick(int secen_id) {
+                Intent intent = new Intent(context, HomePage_QuboActivity.class);
+                intent.putExtra("scene_id", secen_id);
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -174,8 +192,8 @@ public class GuestPageFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(context, GuestGuideDetailActivity.class);
-                intent.putExtra("actId",guideList.get(position).getAct_id());
-                intent.putExtra("userId",guideList.get(position).getUser_id());
+                intent.putExtra("actId", guideList.get(position).getAct_id());
+                intent.putExtra("userId", guideList.get(position).getUser_id());
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.activity_open, 0);
             }
@@ -194,6 +212,10 @@ public class GuestPageFragment extends Fragment {
             case R.id.scene_more:
                 break;
             case R.id.daren_more:
+                if (darenList.size() > 0) {
+                    Intent intent = new Intent(context, Guest_More_DaRenActivity.class);
+                    startActivity(intent);
+                }
                 break;
         }
         getActivity().overridePendingTransition(R.anim.activity_open, 0);

@@ -12,12 +12,24 @@ import android.widget.TextView;
 import com.phone.funoutdoors.R;
 import com.phone.funoutdoors.utils.Constant;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by Administrator on 2016/10/29.
  */
 public class PersonInfoItem extends RelativeLayout {
     private String title;
     private FrameLayout frView;
+    private TextView textView;
+    private CircleImageView imageView;
+
+    public ImageView getImageView() {
+        return imageView;
+    }
+
+    public TextView getTextView() {
+        return textView;
+    }
 
     public PersonInfoItem(Context context) {
         super(context);
@@ -45,10 +57,11 @@ public class PersonInfoItem extends RelativeLayout {
     }
 
     public void addView(View v) {
-        if (v instanceof ImageView){
-            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(80,80);
+        if (v instanceof CircleImageView) {
+            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(80, 80);
             layoutParams.gravity = Gravity.CENTER;
             v.setLayoutParams(layoutParams);
+            imageView = (CircleImageView) v;
         }
         frView.addView(v);
     }

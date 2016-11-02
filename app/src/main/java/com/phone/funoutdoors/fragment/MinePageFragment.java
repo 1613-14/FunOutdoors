@@ -26,7 +26,6 @@ import com.phone.funoutdoors.activity.MinePage_SettingActivity;
 import com.phone.funoutdoors.bean.User;
 import com.phone.funoutdoors.db.UserDBManager;
 import com.phone.funoutdoors.utils.Constant;
-import com.phone.funoutdoors.utils.PopupWindowScreen;
 import com.phone.funoutdoors.view.LoginedBannerItem;
 
 import java.util.List;
@@ -34,6 +33,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,6 +49,8 @@ public class MinePageFragment extends Fragment {
     @BindView(R.id.banner_travel)
     LoginedBannerItem bannerTravel;
     private Context context;
+    @BindView(R.id.headPic)
+    CircleImageView headPic;
 
     public MinePageFragment() {
         // Required empty public constructor
@@ -87,9 +89,6 @@ public class MinePageFragment extends Fragment {
     @OnClick({R.id.headPic, R.id.edit_img, R.id.banner_dicovered, R.id.banner_route, R.id.banner_travel, R.id.logined_certification, R.id.logined_message, R.id.logined_setting, R.id.fans, R.id.attention})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.headPic:
-                PopupWindowScreen.getInstance().showDialog(context, getActivity());
-                break;
             case R.id.edit_img:
                 Intent intent1 = new Intent(context, MinePage_EditPersonActivity.class);
                 startActivity(intent1);
@@ -162,5 +161,4 @@ public class MinePageFragment extends Fragment {
         //设置当前用户的发现、游记、路线
         //TODO
     }
-
 }

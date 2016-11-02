@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,6 +32,7 @@ public class GuestMoreDaRenAdapter extends BaseAdapter {
     LayoutInflater inflater;
 
     OnUserIconClickListener onUserIconClickListener;
+    private Animation animation;
 
     public void setOnUserIconClickListener(OnUserIconClickListener onUserIconClickListener) {
         this.onUserIconClickListener = onUserIconClickListener;
@@ -39,6 +42,7 @@ public class GuestMoreDaRenAdapter extends BaseAdapter {
         this.list = list;
         this.context = context;
         inflater = LayoutInflater.from(context);
+        animation = AnimationUtils.loadAnimation(context, R.anim.listview_anim);
     }
 
 
@@ -82,6 +86,7 @@ public class GuestMoreDaRenAdapter extends BaseAdapter {
                 onUserIconClickListener.onUserIconClickListener(list.get(position).getUser_id());
             }
         });
+        convertView.startAnimation(animation);
         return convertView;
     }
 

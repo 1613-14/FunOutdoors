@@ -85,10 +85,12 @@
             app:lineColor="@color/setting_grey"
             app:textContent="推荐达人" />
 
-        <android.support.v7.widget.RecyclerView
+        <com.phone.funoutdoors.view.MyGridView
             android:id="@+id/recycler_daren"
+            android:horizontalSpacing="5dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:numColumns="3" />
 
         <TextView
             android:id="@+id/daren_more"

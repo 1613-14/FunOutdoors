@@ -10,7 +10,6 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,8 +52,9 @@ public class MinePage_CertificateInfoActivity extends AppCompatActivity {
     IDCartView cartBackImage;
     @BindView(R.id.people_card)
     IDCartView peopleCard;
-    private  ImageView imageView = null;
+    private ImageView imageView = null;
     private String imagePath;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,20 +73,27 @@ public class MinePage_CertificateInfoActivity extends AppCompatActivity {
                 break;
             case R.id.cart_font_image:
                 imageView = cartFontImage.getBgImage();
-                v = popupWindowScreen.showDialog(this, this);
+                v = popupWindowScreen.showDialog(this, this);handleCamera(v);
+                handlePhotoAbum(v);
+                handleCanncel(v, popupWindowScreen);
+
                 break;
             case R.id.cart_back_image:
                 imageView = cartBackImage.getBgImage();
                 v = popupWindowScreen.showDialog(this, this);
+                handleCamera(v);
+                handlePhotoAbum(v);
+                handleCanncel(v, popupWindowScreen);
                 break;
             case R.id.people_card:
                 imageView = peopleCard.getBgImage();
                 v = popupWindowScreen.showDialog(this, this);
+                handleCamera(v);
+                handlePhotoAbum(v);
+                handleCanncel(v, popupWindowScreen);
                 break;
         }
-        handleCamera(v);
-        handlePhotoAbum(v);
-        handleCanncel(v, popupWindowScreen);
+
     }
 
     /**
@@ -123,6 +130,7 @@ public class MinePage_CertificateInfoActivity extends AppCompatActivity {
 
     /**
      * 点击拍照
+     *
      * @param view
      */
     private void handleCamera(View view) {
@@ -180,7 +188,6 @@ public class MinePage_CertificateInfoActivity extends AppCompatActivity {
     }
 
 
-
     /**
      * 创建图片存放文件
      */
@@ -226,7 +233,7 @@ public class MinePage_CertificateInfoActivity extends AppCompatActivity {
         //解码原图片,返回的一个空对象
         BitmapFactory.decodeFile(imgePath, options);
         //设置缩小倍数，
-        options.inSampleSize = 10;
+        options.inSampleSize = 4;
         //设置图片的每个颜色基数在内存所占的字节数
         options.inPreferredConfig = Bitmap.Config.RGB_565;//使用推荐的
         //设置第二次解码范围

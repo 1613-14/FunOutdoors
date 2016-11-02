@@ -31,12 +31,14 @@ public class User {
     private String birthday;
     //签名
     private String description;
+    //城市
+    private String city;
 
     public User() {
     }
 
     @Keep
-    public User(long user_id, String phone, String nickName, int gender, String password, String headIcon, int fans, int attention, String birthday, String description) {
+    public User(long user_id, String phone, String nickName, int gender, String password, String headIcon, int fans, int attention, String birthday, String description, String city) {
         this.user_id = user_id;
         this.phone = phone;
         this.nickName = nickName;
@@ -47,6 +49,7 @@ public class User {
         this.attention = attention;
         this.birthday = birthday;
         this.description = description;
+        this.city = city;
     }
 
     public long getUser_id() {
@@ -127,5 +130,13 @@ public class User {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

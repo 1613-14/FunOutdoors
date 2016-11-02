@@ -9,7 +9,9 @@ import android.widget.TextView;
 
 import com.phone.funoutdoors.R;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +25,8 @@ public class CityListAdapter extends BaseAdapter {
     private List<Integer> letterCharList;
     private String[] title;
     private LayoutInflater inflater;
-    private int pre = 0;
+
+    private Map<String, Integer> map = new HashMap<>();
 
     public CityListAdapter(Context context, List<String> data, List<Integer> letterCharList, String[] title) {
         this.context = context;
@@ -31,6 +34,14 @@ public class CityListAdapter extends BaseAdapter {
         this.letterCharList = letterCharList;
         this.title = title;
         inflater = LayoutInflater.from(context);
+        int index = 0;
+        for (int i = 0; i < letterCharList.size(); i++) {
+            if (letterCharList.get(i) == -1) {
+                map.put(data.get(i), -1);
+            } else {
+                map.put(data.get(i), index++);
+            }
+        }
     }
 
     @Override
@@ -58,31 +69,14 @@ public class CityListAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        if (letterCharList.get(0) == 0 && position == 0) {
-            holder.mainlistItemTv01.setText(title[0]);
-            pre = 1;
-            holder.mainlistItemTv02.setText("城市定位中...");
+        int pre = map.get(data.get(position));
+        if (pre != -1) {
+            holder.mainlistItemTv01.setVisibility(View.VISIBLE);
+            holder.mainlistItemTv01.setText(title[pre]);
+            holder.mainlistItemTv02.setText(data.get(position));
         } else {
-            if (letterCharList.get(position) == -1) {
-                holder.mainlistItemTv01.setVisibility(View.GONE);
-                holder.mainlistItemTv02.setText(data.get(position));
-            } else {
-                holder.mainlistItemTv02.setTag(pre);
-                Integer itemTv02 = (Integer) holder.mainlistItemTv02.getTag();
-                if (itemTv02 == pre) {
-                    holder.mainlistItemTv01.setText(title[itemTv02]);
-                } else {
-                    holder.mainlistItemTv01.setText(title[pre]);
-                }
-                holder.mainlistItemTv01.setVisibility(View.VISIBLE);
-                holder.mainlistItemTv01.setText(title[pre]);
-                holder.mainlistItemTv02.setText(data.get(position));
-                if (pre > title.length) {
-                    pre = 0;
-                }
-                pre++;
-
-            }
+            holder.mainlistItemTv01.setVisibility(View.GONE);
+            holder.mainlistItemTv02.setText(data.get(position));
         }
         return convertView;
     }

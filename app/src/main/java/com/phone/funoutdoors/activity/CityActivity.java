@@ -3,28 +3,17 @@ package com.phone.funoutdoors.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.SDKInitializer;
-import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.BitmapDescriptor;
-import com.baidu.mapapi.map.BitmapDescriptorFactory;
-import com.baidu.mapapi.map.MapStatus;
-import com.baidu.mapapi.map.MapStatusUpdateFactory;
-import com.baidu.mapapi.map.MapView;
-import com.baidu.mapapi.map.MyLocationConfiguration;
-import com.baidu.mapapi.map.MyLocationData;
-import com.baidu.mapapi.model.LatLng;
 import com.phone.funoutdoors.R;
 import com.phone.funoutdoors.adapter.CityListAdapter;
 import com.phone.funoutdoors.interfaces.OnTouchingLetterChangeListener;
@@ -34,13 +23,26 @@ import com.phone.funoutdoors.view.MySideBar;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class CityActivity extends AppCompatActivity implements OnTouchingLetterChangeListener {
 
-    private MapView mMapView;
-    private LocationClient mLocationClient;
-    private BaiduMap mBaiduMap;
-    private MyLocationConfiguration.LocationMode mCurrentMode;
-    private BitmapDescriptor mCurrentMarker;
+    @BindView(R.id.home_page_banner_toolbar_title)
+    TextView homePageBannerToolbarTitle;
+    @BindView(R.id.home_page_banner_toolbar_image)
+    TextView homePageBannerToolbarImage;
+    @BindView(R.id.home_page_banner_toolbar_bnt)
+    TextView homePageBannerToolbarBnt;
+    @BindView(R.id.home_page_toolbar)
+    Toolbar homePageToolbar;
+    @BindView(R.id.select_city)
+    Button selectCity;
+    @BindView(R.id.mainlist)
+    ListView mainlist;
+    @BindView(R.id.myview)
+    MySideBar myview;
     private ListView mainList;
     private MySideBar myView;
     private TextView tvMain;
@@ -52,34 +54,17 @@ public class CityActivity extends AppCompatActivity implements OnTouchingLetterC
             "V", "W", "X", "Y", "Z"};
     private int lastFirstVisibleItem;
     private String city;
-    boolean isFirstLoc = true; // 是否首次定位
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.activity_city);
-        mMapView = (MapView) findViewById(R.id.bmapView);
-        mLocationClient = new LocationClient(this);
-        mBaiduMap = mMapView.getMap();
-        //开启定位图层
-        mBaiduMap.setMyLocationEnabled(true);
-
-        mCurrentMode = MyLocationConfiguration.LocationMode.NORMAL;
-        mCurrentMarker = BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher);
-        LocationClientOption option = new LocationClientOption();
-        option.setOpenGps(true);
-        option.setCoorType("bd0911");
-        option.setScanSpan(1000);
-        //设置定位完成后需要返回地址
-        option.setIsNeedAddress(true);
-        //设置定位完成后需要的定位描述
-        option.setIsNeedLocationDescribe(true);
-        mLocationClient.start();
+        ButterKnife.bind(this);
 
         mainList = (ListView) findViewById(R.id.mainlist);
         myView = (MySideBar) findViewById(R.id.myview);
-        tvMain = (TextView) findViewById(R.id.main_tv01);
+        tvMain = (TextView) findViewById(R.id.main_tv);
         myView.setOnTouchingLetterChangedListener(this);
         tvMain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,15 +124,25 @@ public class CityActivity extends AppCompatActivity implements OnTouchingLetterC
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
-
-//          Toast.makeText(getApplicationContext(), mainList.getItemAtPosition(position)+"我被点击了。。。", 0).show();
                     Toast.makeText(getApplicationContext(), "当前城市" + mainList.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
                     tvMain.setText((CharSequence) mainList.getItemAtPosition(position));//将城市定位的位置换成点击的城市
                 }
             });
         }
+        initToorBar();
+    }
 
-
+    /**
+     * 设置toolBar
+     */
+    private void initToorBar() {
+        homePageBannerToolbarTitle.setText("城市列表");
+        homePageToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
 
@@ -156,59 +151,15 @@ public class CityActivity extends AppCompatActivity implements OnTouchingLetterC
         mainList.setSelection(letterPositionList.get(s));
     }
 
-    class MyLocationListenner implements BDLocationListener {
-
-        @Override
-        public void onReceiveLocation(BDLocation location) {
-            // map view 销毁后不在处理新接收的位置
-            if (location == null || mMapView == null) {
-                return;
-            }
-//              tv_map.setText("[我的位置]\n" + location.getStreet());
-            MyLocationData locData = new MyLocationData.Builder()
-                    .accuracy(location.getRadius())
-                    // 此处设置获取到的方向信息，顺时针0-360
-                    .direction(100).latitude(location.getLatitude())
-                    .longitude(location.getLongitude()).build();
-            //定位当前城市
-            city = location.getCity();
-            tvMain.setText(city);//将当前定位的城市设置给textview
-            mBaiduMap.setMyLocationData(locData);
-            if (isFirstLoc) {
-                isFirstLoc = false;
-                LatLng ll = new LatLng(location.getLatitude(),
-                        location.getLongitude());
-                MapStatus.Builder builder = new MapStatus.Builder();
-                builder.target(ll).zoom(18.0f);
-                mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
-            }
+    @OnClick(R.id.select_city)
+    public void onClick() {
+        //选中城市
+        if (!TextUtils.isEmpty(tvMain.getText().toString())) {
+            Intent intent = new Intent();
+            intent.putExtra("city", tvMain.getText().toString());
+            setResult(100, intent);
+            finish();
         }
-
-        public void onReceivePoi(BDLocation poiLocation) {
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // 在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
-        mLocationClient.stop();
-        //定位层关闭
-        mBaiduMap.setMyLocationEnabled(false);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // 在activity执行onResume时执行mMapView. onResume ()，实现地图生命周期管理
-        mMapView.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        // 在activity执行onPause时执行mMapView. onPause ()，实现地图生命周期管理
-        mMapView.onPause();
     }
 
 }

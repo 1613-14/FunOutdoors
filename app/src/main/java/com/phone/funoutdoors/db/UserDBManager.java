@@ -86,5 +86,8 @@ public class UserDBManager {
         return builder.list();
     }
 
-    
+    public void update(User user) {
+        userDao.update(user);
+    }
+
 }

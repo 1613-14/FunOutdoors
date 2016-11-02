@@ -40,7 +40,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
         <!-- 集成shareSDK配置 -->
         <activity
             android:name="com.mob.tools.MobUIShell"
@@ -119,17 +118,17 @@
         <activity android:name=".activity.HomePage_More_SceneActivity" />
         <activity android:name=".activity.HomePage_More_QuboActivity" />
         <activity android:name=".activity.HomePage_Search_ItemActivity" />
-        <activity android:name=".activity.Guest_More_DaRenActivity"></activity>
-        <activity android:name=".activity.Guest_DaRen_InfoActivity"></activity>
+        <activity android:name=".activity.Guest_More_DaRenActivity" />
+        <activity android:name=".activity.Guest_DaRen_InfoActivity" />
         <activity
             android:name=".vr.SimpleVrVideoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".vr.SimpleVrPanoramaActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name=".activity.OfflineActivity" />
         <activity android:name=".activity.OfflineMapManagerActivity" />
         <activity android:name=".activity.GuestPagePromotionActivity" />
